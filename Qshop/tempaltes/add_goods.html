@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}<title>天天生鲜</title>{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+            <!--添加商品按钮-->
+          <div class="row">
+                <button class="btn btn-primary col-lg-2 ml-auto" data-toggle="modal" data-target="#goods_modal">添加商品</button>
+          </div>
+          <h1></h1>
+            <!--商品列表-->
+          <div class="row">
+              <table class="table">
+                  <thead>
+                    <tr>
+                        <th>商品编号</th>
+                        <th>商品名称</th>
+                        <th>商品类型</th>
+                        <th>商品价格</th>
+                        <th>商品数量</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>00001</td>
+                        <td>
+                            <a href="#">西红柿</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00002</td>
+                        <td>
+                            <a href="#">黄瓜</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00003</td>
+                        <td>
+                            <a href="#">茄子</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00004</td>
+                        <td>
+                            <a href="#">冬瓜</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00005</td>
+                        <td>
+                            <a href="#">南瓜</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00006</td>
+                        <td>
+                            <a href="#">土豆</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00007</td>
+                        <td>
+                            <a href="#">辣椒</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00008</td>
+                        <td>
+                            <a href="#">卷心菜</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00008</td>
+                        <td>
+                            <a href="#">胡萝卜</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00008</td>
+                        <td>
+                            <a href="#">大白菜</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>00008</td>
+                        <td>
+                            <a href="#">菠菜</a>
+                        </td>
+                        <td>蔬菜</td>
+                        <td>8.5</td>
+                        <td>100</td>
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+          <h1></h1>
+            <!--分页-->
+          <div class="row">
+                <ul class="pagination ml-auto">
+                    <li class="page-item">
+                        <a class="page-link">上一页</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">2</a>
+                    </li>
+                                        <li class="page-item">
+                        <a class="page-link">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">4</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">下一页</a>
+                    </li>
+                </ul>
+          </div>
+        </div>
+
+{% endblock %}

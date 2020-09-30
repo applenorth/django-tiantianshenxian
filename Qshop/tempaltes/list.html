@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天天生鲜——首页</title>
+    <script src="/static/123/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/123/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/123/css/footer.css">
+    <link rel="stylesheet" href="/static/123/css/list.css">
+    <link rel="stylesheet" href="/static/123/css/search.css">
+    <script src="/static/123/js/bootstrap.js"></script>
+    <script src="/static/js/vue.min.js"></script>
+    <script src="/static/js/vue-resource.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid container">
+        <!-- Brand and to-only">Toggle navigation</span>
+            <span class="icon-bggle get grouped for better mobile display -->
+        <div class="navbar-header ">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">欢迎来到天天生鲜</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="bootstrap_login.html">登录</a></li>
+                <li><a href="bootstrap_register.html">注册</a></li>
+                <li><a href="user-center-info.html">用户中心</a></li>
+                <li><a href="bootstrap_cart.html">我的购物车</a></li>
+                <li><a href="myorders.html">我的订单</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <!--2.搜索框开始-->
+    <div class="search col-sm-12">
+        <div class="row">
+            <!--左边图片和文字-->
+            <div class="col-lg-5">
+                <img src="/static/123/images/logo.png" alt="..." class="img-rounded">
+                <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;所有商品</span>
+            </div>
+            <!--右边表单-->
+            <div class="col-lg-6 col-lg-offset-1 search_bar">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索商品">
+                        <span class="input-group-btn">
+                    <button class="btn btn-success" style="padding: 6px 50px" type="submit">搜索</button>
+                </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-xs-12 col-sm-2">
+            <ul class="list-group">
+                <li class="list-group-item active">全部商品分类</li>
+            </ul>
+
+        </div>
+        <div class="col-xs-12 col-sm-10">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">首页</a></li>
+                <li role="presentation"><a href="#">手机生鲜</a></li>
+                <li role="presentation"><a href="#">抽奖</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <p class="col-xs-12">全部分类 > 新鲜水果</p>
+    </div>
+    <div>
+        <div class="col-xs-12 col-sm-2">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center newheight">新品推荐</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-xs-12 col-sm-12">
+                        <a href="detail.html" class="thumbnail">
+                            <img src="/static/123/images/goods/goods001.jpg" class="img-responsive">
+                            <p class="text-center">进口柠檬</p>
+                            <p class="text-center">￥3.90</p>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <a href="#" class="thumbnail">
+                            <img src="/static/123/images/goods/goods002.jpg" class="img-responsive">
+                            <p class="text-center">玫瑰香葡萄</p>
+                            <p class="text-center">￥16.80</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-10">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <ul class="nav nav-pills">
+                        <li><a href="">默认</a></li>
+                        <li><a href="">价格</a></li>
+                        <li><a href="">人气</a></li>
+                    </ul>
+                </div>
+
+                {% verbatim %}
+                <div class="panel-body" id="content">
+
+                    <div v-for="one in goods_list">
+                        <div class="col-xs-12 col-sm-3">
+                            <a href="detail.html" class="thumbnail">
+                                <img src="/static/123/images/goods/goods001.jpg" class="img-responsive">
+
+                            </a>
+                            <p class="text-center">{{one.g_name}}</p>
+
+                            <p class="text-center myps"><span>￥{{one.g_price}}</span><span>3.90/500g</span><span><img
+                                    src="/static/123/images/carts.png"/></span></p>
+                        </div>
+                    </div>
+
+                </div>
+                {% endverbatim %}
+            </div>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-4">
+                <ul class="pagination col-xs-12 col-sm-8 col-sm-offset-2">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">上一页</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">下一页</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="footer">
+    <div class="foot_link">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">联系我们</a>
+        <span>|</span>
+        <a href="#">招聘人才</a>
+        <span>|</span>
+        <a href="#">友情链接</a>
+    </div>
+    <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+    <p>电话：010-****888 京ICP备*******8号</p>
+</div>
+
+<script>
+    new Vue(     //3.创建vue对象
+        {
+            el:"#content",  //绑定元素对象
+            data:{
+                goods_list:[
+
+                ]
+            },
+
+            created:function () {
+                //初始化执行，请求数据
+                var url = "http://127.0.0.1:8000/jsontest/";
+                this.$http.get(url).then( // 请求之后执行then
+                    function(data) {
+                        console.log(data.data.data);
+                        // 赋值，绑定动态数据
+                        this.goods_list = data.data.data;
+                    },
+                    function(error){
+                        console.log(error)
+                    }
+                )
+            }
+        }
+    )
+
+
+</script>
+
+</body>
+</html>

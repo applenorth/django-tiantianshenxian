@@ -1,0 +1,15 @@
+/*1.搜索部分*/
+.search_bar { /*距离导航栏高度*/
+    margin-top: 15px;
+}
+
+.search span { /*用户中心文字*/
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Microsoft Yahei";
+    vertical-align: middle;
+}
+
+.search {
+    margin-bottom: 20px;
+}

@@ -1,0 +1,42 @@
+/*重写样式*/
+a {
+    color: #333;
+}
+
+/*高度*/
+.height_100 {
+    width: 100px;
+}
+
+/*宽度*/
+.width_100 {
+    width: 100px;
+}
+
+/*行高*/
+
+/*内边距*/
+.pt_28 {
+    padding-top: 28px;
+}
+
+.pb_28 {
+    padding-bottom: 28px;
+}
+
+.pl_15 {
+    padding-left: 15px;
+}
+
+.pr_15 {
+    padding-right: 15px;
+}
+
+/*外边距*/
+
+/*文字*/
+
+/*边框*/
+.border_1 {
+    border: 1px solid #ccc;
+}

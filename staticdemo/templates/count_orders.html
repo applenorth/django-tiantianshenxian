@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}<title>天天生鲜</title>{% endblock %}
+
+{% block style %}
+    <style>
+      .goods_number,.line_panel{
+          width: 600px;
+          height: 600px;
+      }
+      .panel_card{
+          height: 600px;
+      }
+    </style>
+{% endblock %}
+
+{% block content %}
+     <div class="container-fluid">
+
+            <!--交易额面板部分-->
+          <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold text-primary">订单量</h4>
+              </div>
+              <div class="card-body">
+                <div class="chart-bar">
+                      <canvas width="1500px" height="350px" id="myBarChart"></canvas>
+                </div>
+              </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 md-6">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                          <h4 class="m-0 font-weight-bold text-primary">7月成单情况</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart-bar panel_card">
+                            <div id="line_panel" class="line_panel" style="width: 800px"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 md-6">
+                    <div class="card">
+                        <div class="card-header py-3">
+                          <h4 class="m-0 font-weight-bold text-primary">客户区域</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart-bar panel_card">
+                            <div id="goods_number" class="goods_number"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+      </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/echarts.min.js"></script>
+  <script>
+      var myChart = echarts.init(document.getElementById('myBarChart'));
+      var option = {
+            title: {
+                text: "订单量"
+            },
+            tooltip: {},
+            legend: {
+                data:['订单量']
+            },
+            xAxis: {
+                data: ["土豆","西红柿","黄瓜","茄子","卷心菜","大白菜","辣椒"]
+            },
+            yAxis: {},
+            series: [{
+                name: '订单量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20,30]
+            }]
+        };
+        myChart.setOption(option);
+
+
+        var numberChart = echarts.init(document.getElementById('goods_number'));
+
+        numberoption = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b}: {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 10,
+                data: ['北京', '上海', '广州', '深圳', '河北',"河南","山东"]
+            },
+            series: [
+                {
+                    name: '订单数量',
+                    type: 'pie',
+                    radius: ['20%', '80%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        {value: 335, name: '北京'},
+                        {value: 310, name: '上海'},
+                        {value: 234, name: '广州'},
+                        {value: 135, name: '深圳'},
+                        {value: 1548, name: '河北'},
+                        {value: 335, name: '河南'},
+                        {value: 310, name: '山东'}
+                    ]
+                }
+            ]
+        };
+
+
+        numberChart.setOption(numberoption);
+
+
+        var lineChart = echarts.init(document.getElementById('line_panel'));
+        var line_option = {
+            title: {
+                text: "7月成单情况"
+            },
+            tooltip: {},
+            legend: {
+                data:['成单情况']
+            },
+            xAxis: {
+                data: ["第一周","第二周","第三周","第四周","第五周"]
+            },
+            yAxis: {},
+            series: [{
+                name: '成单情况',
+                type: 'line',
+                data: [5, 20, 36, 10, 10]
+            }]
+        };
+        lineChart.setOption(line_option);
+  </script>
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}<title>天天生鲜</title>{% endblock %}
+
+{% block content %}
+      <!--面板部分-->
+        <div class="container-fluid">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h4 class="m-0 font-weight-bold text-primary">上周交易额度统计</h4>
+                </div>
+                <div class="card-body">
+                  <div class="chart-bar">
+                        <canvas width="1500px" height="350px" id="myBarChart"></canvas>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <!--数量面板部分-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 md-6">
+                    <div class="card">
+                        <div class="card-header py-3">
+                          <h4 class="m-0 font-weight-bold text-primary">订单消息</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart-bar">
+                            <ul class="list-unstyled">
+                                 <li class="list-item col-md-12">
+                                    <a href="#" class="col-md-12">
+                                        <h5 class="fa-pull-left col-md-6">000021订单支付完成，等待发货</h5>
+                                        <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                    </a>
+                                 </li>
+                                 <li class="list-item col-md-12">
+                                    <a href="#" class="col-md-12">
+                                        <h5 class="fa-pull-left col-md-6">000021订单支付完成，等待发货</h5>
+                                        <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                    </a>
+                                 </li>
+                                 <li class="list-item col-md-12">
+                                    <a href="#" class="col-md-12">
+                                        <h5 class="fa-pull-left col-md-6">000021订单支付完成，等待发货</h5>
+                                        <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                    </a>
+                                 </li>
+                                 <li class="list-item col-md-12">
+                                    <a href="#" class="col-md-12">
+                                        <h5 class="fa-pull-left col-md-6">000021订单支付完成，等待发货</h5>
+                                        <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                    </a>
+                                 </li>
+                                 <li class="list-item col-md-12">
+                                    <a href="#" class="col-md-12">
+                                        <h5 class="fa-pull-left col-md-6">000021订单支付完成，等待发货</h5>
+                                        <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                    </a>
+                                 </li>
+                                 <li class="list-item col-md-12">
+                                    <a href="#" class="col-md-12">
+                                        <h5 class="fa-pull-left col-md-6">000021订单支付完成，等待发货</h5>
+                                        <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                    </a>
+                                 </li>
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 md-6">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                          <h4 class="m-0 font-weight-bold text-primary">系统消息</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="chart-bar">
+                                <ul class="list-unstyled">
+                                     <li class="list-item col-md-12">
+                                        <a href="#" class="col-md-12">
+                                            <h5 class="fa-pull-left col-md-6">8月份平台结算通知</h5>
+                                            <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                        </a>
+                                     </li>
+
+                                     <li class="list-item col-md-12">
+                                        <a href="#" class="col-md-12">
+                                            <h5 class="fa-pull-left col-md-6">8月份平台处罚通知</h5>
+                                            <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                        </a>
+                                     </li>
+                                     <li class="list-item col-md-12">
+                                        <a href="#" class="col-md-12">
+                                            <h5 class="fa-pull-left col-md-6">8月份平台入围店铺公示</h5>
+                                            <h5 class="fa-pull-right col-md-4">2020-5-15 9:00</h5>
+                                        </a>
+                                     </li>
+                                </ul>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+      </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/echarts.min.js"></script>
+  <script>
+      var myChart = echarts.init(document.getElementById('myBarChart'));
+      var option = {
+            title: {
+                text: '上周交易额度统计'
+            },
+            tooltip: {},
+            legend: {
+                data:['交易额度']
+            },
+            xAxis: {
+                data: ["周一","周二","周三","周四","周五","周六","周日"]
+            },
+            yAxis: {},
+            series: [{
+                name: '交易额度',
+                type: 'line',
+                data: [5, 20, 36, 10, 10, 20,30]
+            }]
+        };
+        myChart.setOption(option);
+  </script>
+
+{% endblock %}

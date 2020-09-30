@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+这是一个demo
+<p>
+    姓名：{{ name }}
+    <br>
+    年龄：{{ age }}
+    <br>
+    性别：{{ gender }}
+    <br>
+    爱好：{{ hobby.0 }},{{ hobby.1 }},{{ hobby.2 }}
+    <br>
+    python成绩：{{ score.python }}
+    {{ score }}
+
+</p>
+<p>
+    {% for i in hobby %}
+        {{ forloop.counter }}:{{ i }}
+        {{ forloop.counter0 }}:{{ i }}
+    {% endfor %}
+    <br>
+    {% for key in score.keys %}
+        {{ key }}
+    {% endfor %}
+    <br>
+    {% for values in score.values %}
+        {{ values }}
+    {% endfor %}
+
+</p>
+<p>
+      {% for i in hobby %}
+        {% if forloop.last %}
+            {{ i }}
+        {% endif %}
+    {% endfor %}
+
+
+</p>
+
+</body>
+</html>

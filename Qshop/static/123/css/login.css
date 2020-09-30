@@ -1,0 +1,64 @@
+a {
+    color: #333;
+}
+
+/* 外边距 */
+.margin_30 {
+    margin: 30px;
+}
+
+.mt_30 {
+    margin-top: 30px;
+}
+
+/* 内边距 */
+.padding_30 {
+    padding: 30px;
+}
+
+/*背景色*/
+.bg_518e17 {
+    background-color: #518e17;
+}
+
+.bg_fff {
+    background-color: #fff;
+}
+
+/*背景图*/
+
+/*文字*/
+.fs_20 {
+    font-size: 20px;
+}
+
+.color_fff {
+    color: #fff;
+}
+
+.lh_40 {
+    line-height: 40px;
+}
+
+.lh_60 {
+    line-height: 60px;
+}
+
+/*宽度*/
+.width_30 {
+    width: 30px;
+}
+
+/*高度*/
+.height_60 {
+    height: 60px;
+}
+
+.height_76 {
+    height: 76px;
+}
+
+/*边框*/
+.form_title_border {
+    border-bottom: 1px solid #e0e0e0;
+}
