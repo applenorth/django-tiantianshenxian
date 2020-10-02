@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册页</title>
+    <link href="/static/buyer/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/buyer/css/footer.css">
+    <link rel="stylesheet" href="/static/buyer/css/register.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row mt_30 mb_30">
+        <div class="col-lg-3 col-lg-offset-3">
+            <div><a href="./index.html"><img src="/static/buyer/images/logo02.png"></a></div>
+            <div class="text-danger fs_20 mb_30 mt_30">足不出户 · 新鲜每一天</div>
+            <div><img src="/static/buyer/images/register_banner.png"></div>
+        </div>
+        <div class="col-lg-3">
+            <div class="row form_title_border fs_20">
+                <div class="col-lg-6 text-danger  pull-left text-center height_60"><span
+                        class="glyphicon glyphicon-chevron-right"></span><a href="./bootstrap_login.html">用户登录</a></div>
+                <div class="col-lg-6  pull-right text-center height_60">立刻注册</div>
+            </div>
+            <form class="mt_30" action="./index.html">
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" id="user_name" name="user_name"
+                           placeholder="用户名">
+                    <label for="exampleInputEmail1" class="hidden">请输入5-20个字母数字下划线的用户名</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="user_pwd" name="user_pwd"
+                           placeholder="密码">
+                    <label for="user_pwd" class="hidden">请输入5-20个字符的密码</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="user_cpwd" name="user_cpwd"
+                           placeholder="确认密码">
+                    <label for="user_cpwd" class="hidden">两次输入密码不一致</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" id="user_email" name="user_email"
+                           placeholder="邮箱">
+                    <label for="user_email" class="hidden">邮箱格式不正确</label>
+                </div>
+                <div class="form-group clearfix">
+                    <input type="checkbox" class="height_16 lh_16 pull-left" id="user_allow" name="user_allow">
+                    <span class="height_16 lh_16 pull-left">同意”天天生鲜用户使用协议“</span>
+                    <label for="user_email" class="clearfix center-block  hidden">请勾选同意</label>
+                </div>
+                <button type="submit" class="btn btn-lg btn-block btn-danger">注册</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="foot_link">
+            <a href="#">关于我们</a>
+            <span>|</span>
+            <a href="#">联系我们</a>
+            <span>|</span>
+            <a href="#">招聘人才</a>
+            <span>|</span>
+            <a href="#">友情链接</a>
+        </div>
+        <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+        <p>电话：010-****888 京ICP备*******8号</p>
+    </div>
+</div>
+<script src="/static/buyer/js/jquery.min.js"></script>
+<script src="/static/buyer/js/bootstrap.js"></script>
+<script>
+    //验证用户名：5-20位字母数字下划线
+    //true验证通过  false验证不通过
+    function check_user_name() {
+        var flag = false
+        var user_name = $("#user_name").val().trim()
+        var re = /^[a-zA-Z0-9_]{5,20}$/
+        if (re.test(user_name)) {
+            $("#user_name").next().removeClass().addClass("hidden")
+            flag = true
+        } else {
+            $("#user_name").next().removeClass()
+        }
+        return flag
+    }
+
+    //验证密码：5-20位
+    //true验证通过  false验证不通过
+    function check_pwd() {
+        var flag = false
+        var pwd = $("#user_pwd").val().trim()
+        var re = /^\w{5,20}$/
+        if (re.test(pwd)) {
+            $("#user_pwd").next().removeClass().addClass("hidden")
+            flag = true
+        } else {
+            $("#user_pwd").next().removeClass()
+        }
+        return flag
+    }
+
+    //验证重复密码：与输入密码一致
+    //true验证通过  false验证不通过
+    function check_cpwd() {
+        var flag = false
+        var pwd = $("#user_pwd").val().trim()
+        var cpwd = $("#user_cpwd").val().trim()
+        if (pwd == cpwd) {
+            $("#user_cpwd").next().removeClass().addClass("hidden")
+            flag = true
+        } else {
+            $("#user_cpwd").next().removeClass()
+        }
+        return flag
+    }
+
+    //验证邮箱格式
+    //true验证通过  false验证不通过
+    function check_email() {
+        var flag = false
+        var email = $("#user_email").val().trim()
+        var re = /^[a-z0-9][\w\.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$/
+        if (re.test(email)) {
+            $("#user_email").next().removeClass().addClass("hidden")
+            flag = true
+        } else {
+            $("#user_email").next().removeClass()
+        }
+        return flag
+    }
+
+    //验证是否同意协议
+    //true验证通过  false验证不通过
+    function check_allow() {
+        var flag = false
+        var allow = $("#user_allow").prop("checked")
+        if (allow) {
+            $("#user_allow").next().next().removeClass().addClass("hidden")
+            flag = true
+        } else {
+            $("#user_allow").next().next().removeClass().addClass("clearfix center-block")
+        }
+        return flag
+    }
+
+
+    //窗体加载完毕
+    $(function () {
+        //绑定事件
+        $("#user_name").blur(check_user_name)
+        $("#user_pwd").blur(check_pwd)
+        $("#user_cpwd").blur(check_cpwd)
+        $("#user_email").blur(check_email)
+        $("#user_allow").change(check_allow)
+
+        //表单提交验证
+        $("form").submit(function () {
+            if (check_user_name() && check_pwd() && check_cpwd() && check_allow()) {
+                alert("注册成功，跳转到登录页面")
+                return true
+            } else {
+                return false
+            }
+        })
+    })
+</script>
+</body>
+</html>

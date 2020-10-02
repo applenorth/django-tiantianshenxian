@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "store/base.html" %}
 
 {% block title %}<title>天天生鲜</title>{% endblock %}
 
 {% block style %}
-     <style>
+    <style>
       .goods_number,.line_panel{
           width: 600px;
           height: 600px;
@@ -11,7 +11,7 @@
       .panel_card{
           height: 600px;
       }
-  </style>
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,7 @@
             <!--交易额面板部分-->
           <div class="card shadow mb-4">
               <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary">商品库存量</h4>
+                <h4 class="m-0 font-weight-bold text-primary">订单量</h4>
               </div>
               <div class="card-body">
                 <div class="chart-bar">
@@ -36,7 +36,7 @@
                 <div class="col-md-6 md-6">
                     <div class="card shadow">
                         <div class="card-header py-3">
-                          <h4 class="m-0 font-weight-bold text-primary">7月收益趋势</h4>
+                          <h4 class="m-0 font-weight-bold text-primary">7月成单情况</h4>
                         </div>
                         <div class="card-body">
                           <div class="chart-bar panel_card">
@@ -48,7 +48,7 @@
                 <div class="col-md-6 md-6">
                     <div class="card">
                         <div class="card-header py-3">
-                          <h4 class="m-0 font-weight-bold text-primary">周商品销售占比</h4>
+                          <h4 class="m-0 font-weight-bold text-primary">客户区域</h4>
                         </div>
                         <div class="card-body">
                           <div class="chart-bar panel_card">
@@ -59,27 +59,26 @@
                 </div>
           </div>
       </div>
-
 {% endblock %}
 
 {% block js %}
-    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/store/js/echarts.min.js"></script>
   <script>
       var myChart = echarts.init(document.getElementById('myBarChart'));
       var option = {
             title: {
-                text: "商品库存量"
+                text: "订单量"
             },
             tooltip: {},
             legend: {
-                data:['库存量']
+                data:['订单量']
             },
             xAxis: {
                 data: ["土豆","西红柿","黄瓜","茄子","卷心菜","大白菜","辣椒"]
             },
             yAxis: {},
             series: [{
-                name: '库存量',
+                name: '订单量',
                 type: 'bar',
                 data: [5, 20, 36, 10, 10, 20,30]
             }]
@@ -97,11 +96,11 @@
             legend: {
                 orient: 'vertical',
                 left: 10,
-                data: ['土豆', '西红柿', '黄瓜', '茄子', '卷心菜',"大白菜","辣椒"]
+                data: ['北京', '上海', '广州', '深圳', '河北',"河南","山东"]
             },
             series: [
                 {
-                    name: '价格',
+                    name: '订单数量',
                     type: 'pie',
                     radius: ['20%', '80%'],
                     avoidLabelOverlap: false,
@@ -120,14 +119,13 @@
                         show: false
                     },
                     data: [
-                        {value: 335, name: '土豆'},
-                        {value: 310, name: '西红柿'},
-                        {value: 234, name: '黄瓜'},
-                        {value: 135, name: '茄子'},
-                        {value: 1548, name: '卷心菜'},
-                        {value: 335, name: '大白菜'},
-                        {value: 310, name: '辣椒'}
-
+                        {value: 335, name: '北京'},
+                        {value: 310, name: '上海'},
+                        {value: 234, name: '广州'},
+                        {value: 135, name: '深圳'},
+                        {value: 1548, name: '河北'},
+                        {value: 335, name: '河南'},
+                        {value: 310, name: '山东'}
                     ]
                 }
             ]
@@ -140,18 +138,18 @@
         var lineChart = echarts.init(document.getElementById('line_panel'));
         var line_option = {
             title: {
-                text: "7月收益趋势"
+                text: "7月成单情况"
             },
             tooltip: {},
             legend: {
-                data:['收益趋势']
+                data:['成单情况']
             },
             xAxis: {
                 data: ["第一周","第二周","第三周","第四周","第五周"]
             },
             yAxis: {},
             series: [{
-                name: '收益趋势',
+                name: '成单情况',
                 type: 'line',
                 data: [5, 20, 36, 10, 10]
             }]

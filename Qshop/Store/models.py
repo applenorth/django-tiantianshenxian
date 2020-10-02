@@ -16,7 +16,7 @@ class QUser(models.Model):
     gender = models.IntegerField(verbose_name="性别", default=1,choices=GENDER_LIST)
     phone = models.CharField(max_length=32, verbose_name="电话", null=True, blank=True)
     email = models.EmailField(max_length=32, verbose_name="邮箱", null=True, blank=True)
-    picture = models.ImageField(upload_to="images", verbose_name="头像", default="1.jpg")
+    picture = models.ImageField(upload_to="store_images", verbose_name="头像", default="1.jpg")
     address = models.TextField(verbose_name="地址", default="")
     usertype = models.IntegerField(verbose_name="用户类型", default=0)  # 0代表买家， 1代表卖家
 

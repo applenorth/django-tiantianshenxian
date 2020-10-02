@@ -58,8 +58,8 @@ ROOT_URLCONF = 'Qshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"tempaltes")],
-        'APP_DIRS': True,
+        'DIRS': [],
+        'APP_DIRS': True,   #Django会默认从各自的子应用中的templates目录中寻找模板文件
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -121,13 +121,16 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+# #静态文件配置
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
 
+#收集静态文件
+# STATIC_ROOT=os.path.join(BASE_DIR,"static")
 
-#媒体文件配置
+# #媒体文件配置
 MEDIA_ROOT=os.path.join(BASE_DIR,"static")
 
 #配置session过期时间

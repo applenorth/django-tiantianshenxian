@@ -1,0 +1,372 @@
+{% extends 'buyer/base.html' %}
+{% block title %}
+          天天生鲜-首页
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<!--首页头部搜索栏导航-->
+<header class="container">
+    <div class="col-xs-12 col-sm-3">
+        <img src="/static/buyer/images/logo.png"/>
+    </div>
+    <div class="col-xs-12 col-sm-6 makepos">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="搜索商品">
+            <span class="input-group-btn">
+                    <button class="btn btn-success" type="button">搜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;索</button>
+                </span>
+        </div><!-- /input-group -->
+    </div>
+    <div class="col-xs-12 col-sm-3">
+        <button class="btn btn-success pull-right" type="button">
+            <img src="/static/buyer/images/cart.png"/>我的购物车 <span class="badge">4</span>
+        </button>
+    </div>
+</header>
+<!--首页头部轮播列表栏导航-->
+<menu class="container">
+    <div class="col-xs-12 col-sm-2">
+        <ul class="list-group">
+            <li class="list-group-item active">全部商品分类</li>
+            <li class="list-group-item"><a href="#fruit"><img src="/static/buyer/images/fruit.png"/>新鲜水果&nbsp;&nbsp;></a></li>
+            <li class="list-group-item"><a href="#haixian"><img src="/static/buyer/images/haixian.png"/>海鲜水产&nbsp;&nbsp;></a></li>
+            <li class="list-group-item"><a href="#pig"><img src="/static/buyer/images/pig.png"/>猪牛羊肉&nbsp;&nbsp;></a></li>
+            <li class="list-group-item"><a href="#egg"><img src="/static/buyer/images/egg.png"/>禽类蛋品&nbsp;&nbsp;></a></li>
+            <li class="list-group-item"><a href="#vegetable"><img src="/static/buyer/images/vegetable.png"/>新鲜蔬菜&nbsp;&nbsp;></a></li>
+            <li class="list-group-item"><a href="#frozen"><img src="/static/buyer/images/frozen.png"/>速冻食品&nbsp;&nbsp;></a></li>
+        </ul>
+    </div>
+    <div class="col-xs-12 col-sm-10">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="index.html">首页</a></li>
+            <li role="presentation"><a href="#">手机生鲜</a></li>
+            <li role="presentation"><a href="#">抽奖</a></li>
+        </ul>
+        <div class="col-xs-12 col-sm-9">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="/static/buyer/images/slide.jpg">
+                    </div>
+                    <div class="item">
+                        <img src="/static/buyer/images/slide02.jpg">
+                    </div>
+                    <div class="item">
+                        <img src="/static/buyer/images/slide03.jpg">
+                    </div>
+                    <div class="item">
+                        <img src="/static/buyer/images/slide04.jpg">
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+            <img src="/static/buyer/images/adv01.jpg" class="mypic"/>
+            <img src="/static/buyer/images/adv02.jpg" class="mypic"/>
+        </div>
+    </div>
+</menu>
+<!--商品分类列表水平栏-->
+<section class="container" id="fruit">
+    <div class="panel panel-success">
+        <div class="panel-heading">新鲜水果
+            <div class="pull-right"><a href="list.html">查看更多...</a></div>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-2">
+                <img src="/static/buyer/images/banner01.jpg" class="img-responsive">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="detail.html" class="thumbnail">
+                    <p class="text-center">草霉</p><br/>
+                    <img src="/static/buyer/images/goods/goods003.jpg" class="img-responsive">
+                    <p class="text-center">¥30.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">葡萄</p><br/>
+                    <img src="/static/buyer/images/goods/goods002.jpg" class="img-responsive">
+                    <p class="text-center">¥5.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">柠檬</p><br/>
+                    <img src="/static/buyer/images/goods/goods001.jpg">
+                    <p class="text-center">¥3.90元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">奇异果</p><br/>
+                    <img src="/static/buyer/images/goods/goods012.jpg">
+                    <p class="text-center">¥25.80元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">桃</p><br/>
+                    <img src="/static/buyer/images/goods/goods005.jpg">
+                    <p class="text-center">¥25.80元</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container" id="haixian">
+    <div class="panel panel-success">
+        <div class="panel-heading">海鲜水产
+            <div class="pull-right"><a href="list.html">查看更多...</a></div>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-2">
+                <img src="/static/buyer/images/banner02.jpg" class="img-responsive">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">青岛野生海捕大青虾</p><br/>
+                    <img src="/static/buyer/images/goods/goods018.jpg" class="img-responsive">
+                    <p class="text-center">¥48.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">扇贝</p><br/>
+                    <img src="/static/buyer/images/goods/goods019.jpg" class="img-responsive">
+                    <p class="text-center">¥46.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">冷冻秋刀鱼</p><br/>
+                    <img src="/static/buyer/images/goods/goods020.jpg">
+                    <p class="text-center">¥19.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">基围虾</p><br/>
+                    <img src="/static/buyer/images/goods/goods021.jpg">
+                    <p class="text-center">¥25.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">洞庭湖帝王蟹</p><br/>
+                    <img src="/static/buyer/images/goods/goods022.jpg">
+                    <p class="text-center">¥52.80元</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container" id="pig">
+    <div class="panel panel-success">
+        <div class="panel-heading">猪牛羊肉
+            <div class="pull-right"><a href="list.html">查看更多...</a></div>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-2">
+                <img src="/static/buyer/images/banner03.jpg" class="img-responsive">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">猪脚</p><br/>
+                    <img src="/static/buyer/images/goods/goods023.jpg" class="img-responsive">
+                    <p class="text-center">¥37.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">鸡肉</p><br/>
+                    <img src="/static/buyer/images/goods/goods024.jpg" class="img-responsive">
+                    <p class="text-center">¥25.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">猪肉</p><br/>
+                    <img src="/static/buyer/images/goods/goods025.jpg">
+                    <p class="text-center">¥37.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">牛肉</p><br/>
+                    <img src="/static/buyer/images/goods/goods026.jpg">
+                    <p class="text-center">¥52.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">新西兰羔羊肉</p><br/>
+                    <img src="/static/buyer/images/goods/goods027.jpg">
+                    <p class="text-center">¥79.00元</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container" id="egg">
+    <div class="panel panel-success">
+        <div class="panel-heading">禽类蛋品
+            <div class="pull-right"><a href="list.html">查看更多...</a></div>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-2">
+                <img src="/static/buyer/images/banner04.jpg" class="img-responsive">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">柴鸡蛋</p><br/>
+                    <img src="/static/buyer/images/goods/goods028.jpg" class="img-responsive">
+                    <p class="text-center">¥18.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">鹌鹑蛋</p><br/>
+                    <img src="/static/buyer/images/goods/goods029.jpg" class="img-responsive">
+                    <p class="text-center">¥13.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">咸鸭蛋</p><br/>
+                    <img src="/static/buyer/images/goods/goods030.jpg">
+                    <p class="text-center">¥30.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">毛鸡蛋</p><br/>
+                    <img src="/static/buyer/images/goods/goods031.jpg">
+                    <p class="text-center">¥20.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">鹅蛋</p><br/>
+                    <img src="/static/buyer/images/goods/goods032.jpg">
+                    <p class="text-center">¥18.50元</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container" id="vegetable">
+    <div class="panel panel-success">
+        <div class="panel-heading">新鲜蔬菜
+            <div class="pull-right"><a href="list.html">查看更多...</a></div>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-2">
+                <img src="/static/buyer/images/banner05.jpg" class="img-responsive">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">黄瓜</p><br/>
+                    <img src="/static/buyer/images/goods/goods033.jpg" class="img-responsive">
+                    <p class="text-center">¥6.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">西红柿</p><br/>
+                    <img src="/static/buyer/images/goods/goods034.jpg" class="img-responsive">
+                    <p class="text-center">¥5.50元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">茄子</p><br/>
+                    <img src="/static/buyer/images/goods/goods035.jpg">
+                    <p class="text-center">¥8.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">扁豆</p><br/>
+                    <img src="/static/buyer/images/goods/goods036.jpg">
+                    <p class="text-center">¥15.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">蒜台</p><br/>
+                    <img src="/static/buyer/images/goods/goods037.jpg">
+                    <p class="text-center">¥25.00元</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container" id="frozen">
+    <div class="panel panel-success">
+        <div class="panel-heading">速冻食品
+            <div class="pull-right"><a href="list.html">查看更多...</a></div>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-2">
+                <img src="/static/buyer/images/banner06.jpg" class="img-responsive">
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">冰激凌</p><br/>
+                    <img src="/static/buyer/images/goods/goods038.jpg" class="img-responsive">
+                    <p class="text-center">¥8.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">雪糕</p><br/>
+                    <img src="/static/buyer/images/goods/goods039.jpg" class="img-responsive">
+                    <p class="text-center">¥2.50元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">速冻水饺</p><br/>
+                    <img src="/static/buyer/images/goods/goods040.jpg">
+                    <p class="text-center">¥13.50元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">速冻汤圆</p><br/>
+                    <img src="/static/buyer/images/goods/goods041.jpg">
+                    <p class="text-center">15.00元</p>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-2">
+                <a href="#" class="thumbnail">
+                    <p class="text-center">老冰棍</p><br/>
+                    <img src="/static/buyer/images/goods/goods042.jpg">
+                    <p class="text-center">¥0.50元</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+    </div>
+{% endblock %}

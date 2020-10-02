@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "store/base.html" %}
 
 {% block title %}<title>天天生鲜</title>{% endblock %}
 
@@ -106,7 +106,7 @@
 
 {% block js %}
     <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
-    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/store/js/echarts.min.js"></script>
   <script>
       var myChart = echarts.init(document.getElementById('myBarChart'));
       var option = {

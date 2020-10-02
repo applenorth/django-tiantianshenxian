@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登录页</title>
+    <link href="/static/buyer/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/buyer/css/footer.css">
+    <link rel="stylesheet" href="/static/buyer/css/login.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <a href="index.html" class="center-block margin_30"><img src="/static/buyer/images/logo02.png"></a>
+        </div>
+    </div>
+    <div class="row bg_518e17 padding_30">
+        <div class="col-lg-4 col-lg-offset-1">
+            <img src="/static/buyer/images/login_banner.png">
+        </div>
+        <div class="col-lg-1 color_fff">
+            <span class="text-center width_30 lh_40 color_fff fs_20 center-block">日夜兼程急速送达</span>
+        </div>
+        <div class="col-lg-5 bg_fff padding_30">
+            <div class="row form_title_border fs_20">
+                <div class="col-lg-6 text-danger  pull-left text-center height_60">用户登录</div>
+                <div class="col-lg-6  pull-right text-center height_60">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <a href="./bootstrap_register.html">立刻注册</a>
+                </div>
+            </div>
+            <form class="mt_30" action="./index.html">
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" id="user_name" name="user_name"
+                           placeholder="用户名">
+                    <label for="exampleInputEmail1" class="hidden">用户名必填</label>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="user_pwd" name="user_pwd"
+                           placeholder="密码">
+                    <label for="user_pwd" class="hidden">密码必填</label>
+                </div>
+                <div class="form-group clearfix">
+                    <input type="checkbox" class="" id="remember" name="remember">
+                    <span class="">记住用户名</span>
+                    <a href="#" class="pull-right">忘记密码</a>
+                </div>
+                <button type="submit" class="btn btn-lg btn-block btn-danger">登录</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="foot_link">
+            <a href="#">关于我们</a>
+            <span>|</span>
+            <a href="#">联系我们</a>
+            <span>|</span>
+            <a href="#">招聘人才</a>
+            <span>|</span>
+            <a href="#">友情链接</a>
+        </div>
+        <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+        <p>电话：010-****888 京ICP备*******8号</p>
+    </div>
+
+</div>
+<script src="/static/buyer/js/jquery.min.js"></script>
+<script src="/static/buyer/js/bootstrap.js"></script>
+<script>
+    //验证用户名：非空
+    //true验证通过  false验证不通过
+    function check_user_name() {
+        var flag = false
+        var user_name = $("#user_name").val().trim();
+        if (user_name) {
+            $("#user_name").next().removeClass().addClass("hidden")
+            flag = true
+        } else {
+            $("#user_name").next().removeClass()
+        }
+        return flag
+    }
+
+    //验证密码：非空
+    //true验证通过  false验证不通过
+    function check_user_pwd() {
+        var flag = false
+        var user_pwd = $("#user_pwd").val().trim()
+        if (user_pwd) {
+            $("#user_pwd").next().removeClass().addClass("hidden")
+            flag = true
+        } else {
+            $("#user_pwd").next().removeClass()
+        }
+        return flag
+    }
+
+    //窗体加载完毕
+    $(function () {
+        //绑定事件
+        $("#user_name").blur(check_user_name)
+        $("#user_pwd").blur(check_user_pwd)
+        //表单提交验证
+        $("form").submit(function () {
+            if (check_user_name() && check_user_pwd()) {
+                alert("登录成功，跳转到首页")
+                return true
+            } else {
+                return false
+            }
+        })
+    })
+</script>
+</body>
+</html>

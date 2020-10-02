@@ -1,0 +1,259 @@
+{% extends "buyer/base.html" %}
+
+{% block script %}
+    <link rel="stylesheet" href="/static/buyer/css/usercenterinfo.css">
+    <link rel="stylesheet" href="/static/buyer/css/search.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <!--2.搜索框开始-->
+    <div class="search">
+        <div class="row ">
+            <!--左边图片和文字-->
+            <div class="col-lg-5">
+                <img src="/static/buyer/images/logo.png" alt="..." class="img-rounded">
+                <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;用户中心</span>
+            </div>
+            <!--右边表单-->
+            <div class="col-lg-6 col-lg-offset-1 search_bar">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索商品">
+                        <span class="input-group-btn">
+                    <button class="btn btn-success" style="padding: 6px 50px" type="submit">搜索</button>
+                </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--3.主体-->
+    <div class="main">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="#">个人信息</a></li>
+            <li role="presentation"><a href="#">全部订单</a></li>
+            <li role="presentation" class="active"><a href="#">收货地址</a></li>
+        </ul>
+        <br/>
+        <div class="info">
+            <!--基本信息-->
+            <div id="userinfo">
+                <div class="panel panel-default">
+                    <div class="panel-heading col-lg-12">
+                        <span class="col-lg-11">用户基本信息</span>
+                        <span class="col-lg-1">
+                            <a class="btn btn-default btn-xs" href="edit-user.html" role="button">&nbsp;&nbsp;修&nbsp;改&nbsp;&nbsp;</a>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            用户名: 张三 <br/>
+                            联系方式: 15300162466 <br/>
+                            联系地址: 北京昌平区
+                        </div>
+                    </div>
+                    <div class="panel-heading">最近浏览</div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="#" class="thumbnail">
+                                <img src="/static/buyer/images/goods/goods006.jpg" alt="...">
+                            </a>
+                            <div style="text-align: center">
+                                <h4><a href="detail.html">进口西梅</a></h4>
+                                <span class="prize" style="color: red">￥16.80</span>
+                                <span class="unit">16.80/500g</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" class="thumbnail">
+                                <img src="/static/buyer/images/goods/goods001.jpg" alt="...">
+                            </a>
+                            <div style="text-align: center">
+                                <h4><a href="detail.html">大兴大棚草莓</a></h4>
+                                <span class="prize" style="color: red">￥16.80</span>
+                                <span class="unit">16.80/500g</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" class="thumbnail">
+                                <img src="/static/buyer/images/goods/goods004.jpg" alt="...">
+                            </a>
+                            <div style="text-align: center">
+                                <h4><a href="detail.html">吐鲁番梨光杏</a></h4>
+                                <span class="prize" style="color: red">￥16.80</span>
+                                <span class="unit">16.80/500g</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" class="thumbnail">
+                                <img src="/static/buyer/images/goods/goods005.jpg" alt="...">
+                            </a>
+                            <div style="text-align: center">
+                                <h4><a href="detail.html">黄肉桃</a></h4>
+                                <span class="prize" style="color: red">￥16.80</span>
+                                <span class="unit">16.80/500g</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!--所有订单-->
+            <div id="allorders">
+                <div class="panel panel-default ">
+                    <div class="panel-heading col-lg-12">未支付</div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-hover">
+                            <tr align="center" valign="middle">
+                                <td>
+                                    <img class="img-thumbnail" src="/static/buyer/images/goods02.jpg" width="60px" alt="">
+                                </td>
+                                <td style='vertical-align: middle;text-align: center;'>嘎啦苹果嘎啦苹果</td>
+                                <td style='vertical-align: middle;text-align: center;'>11.80元/500g</td>
+                                <td style='vertical-align: middle;text-align: center;'>1</td>
+                                <td style='vertical-align: middle;text-align: center;'>11.80元</td>
+                                <td rowspan="2" align="center" style='vertical-align: middle;text-align: center;'>待付款
+                                </td>
+                                <td style='vertical-align: middle;text-align: center;'><a href="">去付款</a></td>
+                            </tr>
+                            <tr align="center" valign="center">
+                                <td>
+                                    <img class="img-thumbnail" src="/static/buyer/images/goods02.jpg" width="60px" alt="">
+                                </td>
+                                <td style='vertical-align: middle;text-align: center;'>嘎啦苹果嘎啦苹果</td>
+                                <td style='vertical-align: middle;text-align: center;'>11.80元/500g</td>
+                                <td style='vertical-align: middle;text-align: center;'>1</td>
+                                <td style='vertical-align: middle;text-align: center;'>11.80元</td>
+                                <td style='vertical-align: middle;text-align: center;'><a href="">去付款</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="panel-heading col-lg-12">已支付</div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-hover">
+                            <tr align="center" valign="center">
+                                <td>
+                                    <img class="img-thumbnail" src="/static/buyer/images/goods02.jpg" width="60px" alt="">
+                                </td>
+                                <td style='vertical-align: middle;text-align: center;'>嘎啦苹果嘎啦苹果</td>
+                                <td style='vertical-align: middle;text-align: center;'>11.80元/500g</td>
+                                <td style='vertical-align: middle;text-align: center;'>1</td>
+                                <td style='vertical-align: middle;text-align: center;'>11.80元</td>
+                                <td rowspan="2" style='vertical-align: middle;text-align: center;'>已付款</td>
+                                <td style='vertical-align: middle;text-align: center;'><a href="">查看物流</a></td>
+                            </tr>
+                            <tr align="center" valign="center">
+                                <td>
+                                    <img class="img-thumbnail" src="/static/buyer/images/goods02.jpg" width="60px" alt="">
+                                </td>
+                                <td style='vertical-align: middle;text-align: center;'>嘎啦苹果嘎啦苹果</td>
+                                <td style='vertical-align: middle;text-align: center;'>11.80元/500g</td>
+                                <td style='vertical-align: middle;text-align: center;'>1</td>
+                                <td style='vertical-align: middle;text-align: center;'>11.80元</td>
+                                <td style='vertical-align: middle;text-align: center;'><a href="">查看物流</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div align="center">
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                                <li class="disabled"><a href="#" aria-label="Previous"><span
+                                        aria-hidden="true">&laquo;</span></a></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!--收货地址-->
+            <div id="address">
+                <div class="panel panel-default ">
+                    <div class="panel-heading col-lg-12">当前地址:</div>
+                    <div class="panel-body">
+                        <div class="col-lg-8">
+
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+                                           checked>
+                                    北京市 海淀区 东北旺西路8号中关村软件园 （李思1 收） 182****7528
+                                </label>
+                                <a href="edit-address.html" class="btn btn-default">编辑</a>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1">
+                                    北京市 海淀区 东北旺西路8号中关村软件园 （李思2 收） 182****7528
+                                </label>
+                                <a href="edit-address.html" class="btn btn-default">编辑</a>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option1">
+                                    北京市 海淀区 东北旺西路8号中关村软件园 （李思3 收） 182****7528
+                                </label>
+                                <a href="edit-address.html" class="btn btn-default">编辑</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-heading">添加地址</div>
+                    <div class="panel-body">
+                        <div class="row col-lg-8" style="margin-top: 10px">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="shoujianren" class="col-sm-2 control-label">收件人</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="shoujianren" placeholder="收件人">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="xiangxiaddress" class="col-sm-2 control-label">详细地址</label>
+                                    <div class="col-sm-10">
+                                    <textarea class="form-control" placeholder="详细地址" id="xiangxiaddress"
+                                              rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="youbian" class="col-sm-2 control-label">邮编</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="youbian" placeholder="邮政编码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="youbian" class="col-sm-2 control-label">手机</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="phone" placeholder="手机号">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default col-lg-4 col-lg-offset-4">&nbsp;&nbsp;提&nbsp;交&nbsp;&nbsp;
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+    
+{% endblock %}

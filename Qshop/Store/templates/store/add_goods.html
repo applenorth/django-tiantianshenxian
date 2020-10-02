@@ -1,0 +1,157 @@
+{% extends "store/base.html" %}
+
+{% block title %}<title>天天生鲜</title>{% endblock %}
+
+{% block style %}
+    <script src="/static/store/js/vue.min.js"></script>
+    <script src="/static/store/js/vue-resource.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+            <!--添加商品按钮-->
+          <div class="row">
+                <button class="btn btn-primary col-lg-2 ml-auto" data-toggle="modal" data-target="#goods_modal">添加商品</button>
+          </div>
+          <h1></h1>
+            <!--商品列表-->
+         {% verbatim %}
+        <div id="content" >
+          <div class="row">
+              <table class="table" >
+                  <thead>
+                    <tr>
+                        <th>商品编号</th>
+                        <th>商品名称</th>
+                        <th>商品类型</th>
+                        <th>商品价格</th>
+                        <th>商品数量</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr v-for="one in goods_list">
+                        <td>{{ one.g_number }}</td>
+                        <td>
+                            <a href="#">{{ one.g_name }}</a>
+                        </td>
+                        <td>{{ one.g_type }}</td>
+                        <td>{{ one.g_price }}</td>
+                        <td>{{ one.g_num }}</td>
+                    </tr>
+
+                  </tbody>
+
+              </table>
+          </div>
+        </div>
+          {% endverbatim %}
+          <h1></h1>
+            <!--分页-->
+          <div class="row">
+                <ul class="pagination ml-auto">
+                    <li class="page-item">
+                        <a class="page-link">上一页</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">2</a>
+                    </li>
+                                        <li class="page-item">
+                        <a class="page-link">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">4</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link">下一页</a>
+                    </li>
+                </ul>
+          </div>
+        </div>
+
+{% endblock %}
+
+{% block foot %}
+     <div class="modal fade" id="goods_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-label="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">添加商品</div>
+              <div class="modal-body">
+                  <form class="form">
+                      <div class="form-group">
+                        <label class="">商品名称</label>
+                        <input class="form-control" type="text" name="goods_name">
+                      </div>
+                      <div class="form-group">
+                        <label class="">商品类型</label>
+                        <select class="form-control" name="goods_type">
+                            <option>--商品类型--</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="">商品价格</label>
+                        <input class="form-control" type="text" name="g_price">
+                      </div>
+                      <div class="form-group">
+                        <label class="">商品保质期</label>
+                        <input class="form-control" type="text" name="g_safe_date">
+                      </div>
+                      <div class="form-group">
+                        <label class="">商品出场日期</label>
+                        <input class="form-control" type="text" name="g_public_date">
+                      </div>
+                      <div class="form-group">
+                        <label class="">商品数量</label>
+                        <input class="form-control" type="text" name="goods_number">
+                      </div>
+                      <div class="form-group">
+                        <label class="">商品描述</label>
+                        <textarea class="form-control" name="g_description"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label class="">商品图片</label>
+                        <input class="form-control" type="file" name="g_picture">
+                      </div>
+                      <button class="btn btn-primary fa-pull-right" type="submit">提交商品</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+    new Vue(     //3.创建vue对象
+        {
+            el:"#content",  //绑定元素对象
+            data:{
+                goods_list:[
+
+                ]
+            },
+
+            created:function () {
+                //初始化执行，请求数据
+                var url = "http://127.0.0.1:8000/store/api/morelist/?type_id=1";
+                this.$http.get(url).then( // 请求之后执行then
+                    function(data) {
+                        console.log(data.data.results);
+                        // 赋值，绑定动态数据
+                        this.goods_list = data.data.results;
+                    },
+                    function(error){
+                        console.log(error)
+                    }
+                )
+            }
+        }
+    )
+
+
+</script>
+{% endblock %}

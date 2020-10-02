@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天天生鲜——首页</title>
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet" href="css/search.css">
+    <script src="js/bootstrap.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid container">
+        <!-- Brand and to-only">Toggle navigation</span>
+            <span class="icon-bggle get grouped for better mobile display -->
+        <div class="navbar-header ">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">欢迎来到天天生鲜</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="bootstrap_login.html">登录</a></li>
+                <li><a href="bootstrap_register.html">注册</a></li>
+                <li><a href="user-center-info.html">用户中心</a></li>
+                <li><a href="bootstrap_cart.html">我的购物车</a></li>
+                <li><a href="myorders.html">我的订单</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+
+    <!--2.搜索框开始-->
+    <div class="search col-sm-12">
+        <div class="row">
+            <!--左边图片和文字-->
+            <div class="col-lg-5">
+                <img src="./images/logo.png" alt="..." class="img-rounded">
+                <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;商品详情</span>
+            </div>
+            <!--右边表单-->
+            <div class="col-lg-6 col-lg-offset-1 search_bar">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索商品">
+                        <span class="input-group-btn">
+                    <button class="btn btn-success" style="padding: 6px 50px" type="submit">搜索</button>
+                </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <menu class="container">
+        <div class="col-xs-12 col-sm-2">
+            <ul class="list-group">
+                <li class="list-group-item active">全部商品分类</li>
+            </ul>
+
+        </div>
+        <div class="col-xs-12 col-sm-10">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">首页</a></li>
+                <li role="presentation"><a href="#">手机生鲜</a></li>
+                <li role="presentation"><a href="#">抽奖</a></li>
+            </ul>
+        </div>
+    </menu>
+    <article class="container">
+        <p class="col-xs-12">全部分类 > 新鲜水果 > 商品详情</p>
+    </article>
+    <section class="container">
+        <div class="col-xs-12 col-sm-5">
+            <img src="images/goods_detail.jpg"/>
+        </div>
+        <div class="col-xs-12 col-sm-7">
+            <h2 class="title">大兴大棚草霉</h2>
+            <p>草莓浆果柔软多汁，味美爽口，适合速冻保鲜贮藏。草莓速冻后，可以保持原有的色、香、味，既便于贮藏，又便于外销。</p>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h1 id="price_detail">¥16.80<span class="span1">500g</span></h1>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <p class="newheight">数量:</p>
+            </div>
+            <div class="input-group col-xs-3">
+                <span class="input-group-addon" id="btn_add">+</span>
+                <input type="text" class="form-control newwidth" value="1">
+                <span class="input-group-addon" id="btn_sub">-</span>
+            </div>
+            <div class="col-xs-12">
+                <p>总价:<span class="newprice" id="newprice">16.80元</span></p>
+            </div>
+            <p class="col-xs-3"><a class="btn btn-danger btn-lg" href="#" role="button">立即购买</a></p>
+            <p class="col-xs-3"><a class="btn btn-danger btn-lg" href="bootstrap_cart.html" role="button">加入购物车</a></p>
+        </div>
+    </section>
+    <section class="container newspace">
+        <div class="col-xs-12 col-sm-2">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center newheight">新品推荐</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-xs-12 col-sm-12">
+                        <a href="#" class="thumbnail">
+                            <img src="images/goods/goods001.jpg" class="img-responsive">
+                            <p class="text-center">进口柠檬</p>
+                            <p class="text-center">￥3.90</p>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <a href="#" class="thumbnail">
+                            <img src="images/goods/goods002.jpg" class="img-responsive">
+                            <p class="text-center">玫瑰香葡萄</p>
+                            <p class="text-center">￥16.80</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-10">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#home" data-toggle="tab">商品介绍</a></li>
+                <li><a href="#profile" data-toggle="tab">评论</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <h3>商品详情</h3>
+                    <p>草莓采摘园位于北京大兴区 庞各庄镇四各庄村
+                        ，每年1月-6月面向北京以及周围城市提供新鲜草莓采摘和精品礼盒装草莓，草莓品种多样丰富，个大香甜。所有草莓均严格按照有机标准培育，不使用任何化肥和农药。草莓在采摘期间免洗可以直接食用。欢迎喜欢草莓的市民前来采摘，也欢迎各大单位选购精品有机草莓礼盒，有机草莓礼盒是亲朋馈赠、福利送礼的最佳选择。</p>
+                </div>
+                <div class="tab-pane" id="profile">...</div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<div class="footer">
+    <div class="foot_link">
+        <a href="#">关于我们</a>
+        <span>|</span>
+        <a href="#">联系我们</a>
+        <span>|</span>
+        <a href="#">招聘人才</a>
+        <span>|</span>
+        <a href="#">友情链接</a>
+    </div>
+    <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+    <p>电话：010-****888 京ICP备*******8号</p>
+</div>
+
+
+<script>
+    $(function () {
+        $("#btn_add").click(function () {
+            var value = $(this).next().val();
+            value = parseInt(value);
+            value += 1;
+            $(this).next().val(value);
+            /*取价格的html文本单位*/
+            var htmls = $("#price_detail").html()
+            /*用span进行切分,取出价格，转换成float型*/
+            prices = htmls.split("span");
+            price = prices[0];
+            price = price.substring(1, price.length - 1);
+            price = parseFloat(price);
+            total = value * price;
+            total = total.toFixed(2);
+            /*求总价修改总价栏*/
+            $("#newprice").text(total + "元")
+        });
+        $("#btn_sub").click(function () {
+            var value = $(this).prev().val();
+            value = parseInt(value);
+            value -= 1;
+            value = value <= 1 ? 1 : value;
+            $(this).prev().val(value);
+            /*取价格的html文本单位*/
+            var htmls = $("#price_detail").html()
+            /*用span进行切分,取出价格，转换成float型*/
+            prices = htmls.split("span");
+            price = prices[0];
+            price = price.substring(1, price.length - 1);
+            price = parseFloat(price);
+            total = value * price;
+            /*求总价修改总价栏*/
+            $("#newprice").text(total.toFixed(2) + "元")
+        });
+    })
+</script>
+</body>
+</html>
