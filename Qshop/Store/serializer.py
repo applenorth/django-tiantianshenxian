@@ -5,7 +5,7 @@
 @File:serializer.py
 """
 from rest_framework import serializers
-from .models import *
+from Store.models import *
 #序列化器
 #搭建一个关于goods的api接口
 class MoreListSeriaLizer(serializers.ModelSerializer):  #继承serializers.ModelSerializer父类
@@ -76,12 +76,22 @@ class MoreListView3(generics.ListAPIView):
         }
 
 ##ViewSet类和路由器
-#视图
+#视图，获取登录用户的所有商品信息
 from rest_framework import viewsets
-class MoreListView(viewsets.ReadOnlyModelViewSet):
+
+from rest_framework.pagination import PageNumberPagination
+
+class MoreListView(viewsets.ReadOnlyModelViewSet):  #viewsets.ReadOnlyModelViewSet
     def get_queryset(self):
-        type_id = self.request.GET.get("type_id")
-        goods_list = GoodsType.objects.filter(id=type_id).first().goods_set.all()
+        #拿到登录用户的所有商品信息
+        quser_id = self.request.GET.get("quser_id")
+
+        quser_store = QUser.objects.filter(id=quser_id).first().store
+        store_id = quser_store.id
+        #通过店铺查询店铺中所有的商品
+        goods_list=Goods.objects.filter(g_store_id=store_id).all()
+
+        # goods_list = GoodsType.objects.filter(id=quser_id).first().goods_set.all()
 
         # 抛出goods_list
         return goods_list
@@ -95,3 +105,4 @@ class MoreListView(viewsets.ReadOnlyModelViewSet):
         return {
             "view": self
         }
+

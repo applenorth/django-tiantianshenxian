@@ -45,32 +45,30 @@
               </table>
           </div>
         </div>
-          {% endverbatim %}
+        {% endverbatim %}
           <h1></h1>
             <!--分页-->
-          <div class="row">
+        {% verbatim %}
+          <div class="row" id="row1">
                 <ul class="pagination ml-auto">
+
                     <li class="page-item">
-                        <a class="page-link">上一页</a>
+                        <a class="page-link" aria-label="Previous" v-on:click="getprev()">上一页</a>
                     </li>
-                    <li class="page-item">
+
+                    <li class="page-item" v-on:click="getpage()">
                         <a class="page-link">1</a>
                     </li>
-                    <li class="page-item">
-                        <a class="page-link">2</a>
-                    </li>
-                                        <li class="page-item">
-                        <a class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link">4</a>
-                    </li>
-                    <li class="page-item">
+
+                    <li class="page-item" aria-label="Next" v-on:click="getnext()">
                         <a class="page-link">下一页</a>
                     </li>
                 </ul>
           </div>
         </div>
+        {% endverbatim %}
+
+
 
 {% endblock %}
 
@@ -80,16 +78,23 @@
           <div class="modal-content">
               <div class="modal-header">添加商品</div>
               <div class="modal-body">
-                  <form class="form">
+                  <form class="form" action="" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
                       <div class="form-group">
                         <label class="">商品名称</label>
                         <input class="form-control" type="text" name="goods_name">
                       </div>
                       <div class="form-group">
                         <label class="">商品类型</label>
+
                         <select class="form-control" name="goods_type">
                             <option>--商品类型--</option>
+                            {% for one in goodstype_list %}
+                            <option>{{one.t_name}}</option>
+                            {% endfor %}
+
                         </select>
+
                       </div>
 
                       <div class="form-group">
@@ -106,7 +111,7 @@
                       </div>
                       <div class="form-group">
                         <label class="">商品数量</label>
-                        <input class="form-control" type="text" name="goods_number">
+                        <input class="form-control" type="text" name="goods_num">
                       </div>
                       <div class="form-group">
                         <label class="">商品描述</label>
@@ -128,30 +133,74 @@
     <script>
     new Vue(     //3.创建vue对象
         {
-            el:"#content",  //绑定元素对象
+            el:"#content", //绑定元素对象
             data:{
                 goods_list:[
+
+                ],
+                next_url:"",      //下一页url
+                prev_url:"",      //上一页url
+                page_url_list:[   //页码列表
 
                 ]
             },
 
             created:function () {
                 //初始化执行，请求数据
-                var url = "http://127.0.0.1:8000/store/api/morelist/?type_id=1";
-                this.$http.get(url).then( // 请求之后执行then
+                var url = "http://127.0.0.1:8000/store/api/morelist/?quser_id={{request.COOKIES.user_id}}";
+                //调用getdata方法
+                this.getdata(url)
+
+            },
+            methods:{
+                getdata:function(url){
+                    this.$http.get(url).then( // 请求之后执行then
                     function(data) {
                         console.log(data.data.results);
+                        console.log(data.data.next);
+                        console.log(data.data.previous);
                         // 赋值，绑定动态数据
                         this.goods_list = data.data.results;
+                        //绑定上一页与下一页的数据
+                        this.next_url=data.data.next;    //下一页
+                        this.prev_url=data.data.previous;  //上一页
+
                     },
                     function(error){
                         console.log(error)
                     }
                 )
+
+                },
+                //获取上一页
+                getprev:function () {
+                    //console.log("prev");
+                    // 发送上一页请求，获取到上一页的url
+                    //调用getdata方法，传入上一页的url，实现页面跳转
+                    if(this.prev_url){
+                        this.getdata(this.prev_url)
+                    }
+
+                },
+                //获取下一页
+                getnext:function () {
+                    //console.log("next");
+                    //发送下一页请求
+                    //console.log(this.next_url);
+                    //调用getdata方法，传入下一页的url，实现页面跳转
+                     if(this.next_url) {
+                         this.getdata(this.next_url)
+                     }
+                },
+                //获取页码页面
+                getpage:function () {
+
+                    this.getdata(this.next_url)
+
+                }
             }
         }
-    )
-
+    );
 
 </script>
 {% endblock %}

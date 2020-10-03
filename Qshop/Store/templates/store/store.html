@@ -26,43 +26,49 @@
                   <h4 class="m-0 font-weight-bold text-primary">店铺详情</h4>
                 </div>
                 <div class="card-body">
-                  <table class="table store_table">
-                        <tr>
-                            <td rowspan="4">
-                                <a href="#" class="thumbnail">
-                                    <img src="/static/store/img/by.jpg">
-                                </a>
-                            </td>
-                            <th class="t_label">店铺名称</th>
-                            <td class="t_input"><input class="form-control" type="text" placeholder="店铺名称"></td>
-                            <td class="t_message">店铺名称每月至多修改一次</td>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <table class="table store_table">
+                            <tr>
+                                <td rowspan="4">
+                                    <a href="#" class="thumbnail">
+                                        <img src="/static/{{user_store_info.s_logo}}" width="300px">
+                                    </a>
+                                </td>
+                                <th class="t_label">店铺名称</th>
+                                <td class="t_input">
+                                    <input class="form-control" type="text" placeholder="店铺名称"
+                                           name="s_name" value="{{ user_store_info.s_name }}">
+                                </td>
+                                <td class="t_message">店铺名称每月至多修改一次</td>
 
-                        </tr>
-                        <tr>
-                            <th class="t_label">店铺地址</th>
-                            <td class="t_input" colspan="2">
-                                <input class="form-control" type="text" placeholder="店铺地址"></input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th colspan="3">店铺描述</th>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <textarea class="form-control"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="btn btn-primary" type="button" value="图片上传">
-                            </td>
-                            <td colspan="3">
-                                <input class="btn btn-primary" type="submit" value="发起修改">
-                            </td>
-                        </tr>
+                            </tr>
+                            <tr>
+                                <th class="t_label">店铺地址</th>
+                                <td class="t_input" colspan="2">
+                                    <input class="form-control" type="text" placeholder="店铺地址"
+                                           name="s_address" value="{{ user_store_info.s_address }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="3">店铺描述</th>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <textarea class="form-control" name="s_description">{{ user_store_info.s_description }}</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="btn btn-primary" type="file" value="图片上传" name="s_logo">
+                                </td>
+                                <td colspan="3">
+                                    <button class="btn btn-primary" type="submit" value="发起修改">发起修改</button>
+                                </td>
+                            </tr>
 
-
-                  </table>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>

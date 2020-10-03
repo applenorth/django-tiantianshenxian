@@ -15,7 +15,6 @@ router=DefaultRouter()
 #收集注册路由，注册路由器
 router.register("morelist",MoreListView,basename="")
 
-
 # #ViewSet类的路由
 # more_list = MoreListView.as_view(
 #     {'get': 'list'}

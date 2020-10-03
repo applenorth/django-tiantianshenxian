@@ -134,11 +134,12 @@ STATICFILES_DIRS=[
 MEDIA_ROOT=os.path.join(BASE_DIR,"static")
 
 #配置session过期时间
-SESSION_COOKIE_AGE = 259200             # Session的cookie失效日期（2周）（数字为秒数）（默认）
+SESSION_COOKIE_AGE = 259200             # Session的cookie失效日期（3天）（数字为秒数）（默认）
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # 是否关闭浏览器使得Session过期（默认）
 
 ## def 提供的分页
 REST_FRAMEWORK = {
 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination', # 分页器
-'PAGE_SIZE': 12 # 每页返回的条数
+'PAGE_SIZE': 12, # 每页返回的条数
+
 }

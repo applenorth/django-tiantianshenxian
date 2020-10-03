@@ -47,6 +47,7 @@ def login(request):
         userlogin=UserLogin(request.POST)
         if userlogin.is_valid():  #通过校验
             flag = QUser.objects.filter(username=username, password=SetPassword(password)).exists()
+            user_id=QUser.objects.filter(username=username).first().id
             if flag:
                 # 存在
                 # 用户存在
@@ -54,6 +55,7 @@ def login(request):
                 # cookie与session设置要依赖于响应对象
                 # 设置cookie
                 response.set_cookie("name",username,expires=259200)
+                response.set_cookie("user_id",user_id,expires=259200)
 
                 # 设置session
                 request.session["name"]=username
@@ -78,6 +80,7 @@ def logout(request):
 
     #删除cookie，就是重新下发一个空值覆盖掉之前的cookies
     response.delete_cookie("name")
+    response.delete_cookie("user_id")
     # 删除session
     del request.session['name']
 
@@ -130,13 +133,56 @@ def index(request):
 @LoginValid
 #添加商品页面
 def add_goods(request):
+    goodstype_list=GoodsType.objects.all()
+    if request.method=="POST":
+        print(request.POST)
 
-    return render_to_response("store/add_goods.html",locals())
+        goods_name=request.POST.get('goods_name')
+
+        #商品类型
+        goods_type=request.POST.get('goods_type')
+        goods_type_id=GoodsType.objects.filter(t_name=goods_type).first().id
+        # print(goods_type_id)  #拿到goods_type的id
+
+        g_price=request.POST.get('g_price')
+        g_safe_date=request.POST.get('g_safe_date')
+        g_public_date=request.POST.get('g_public_date')
+        #商品数量
+        goods_num=request.POST.get('goods_num')
+
+        g_description=request.POST.get('g_description')
+        g_picture=request.FILES.get('g_picture')
+
+        #添加数据
+        goods=Goods()
+        goods.g_name=goods_name
+        goods.g_type_id=goods_type_id
+        goods.g_safe_date=g_safe_date
+        goods.g_public_date=g_public_date
+        goods.g_num=goods_num
+        goods.g_description=g_description
+        goods.g_price=g_price
+
+        #图片添加
+        goods.g_picutre=g_picture
+
+        #g_number字段必填，设置为自增
+        goods.g_number=1
+
+        #店铺id关联
+        cookie_name=request.COOKIES.get('name')
+        #反向查询拿到store的对象
+        quser_store=QUser.objects.filter(username=cookie_name).first().store
+        goods.g_store_id=quser_store.id
+
+        goods.save()
+
+
+    return render(request,"store/add_goods.html",locals())
 
 #api接口拿商品数据，使用drf-djangorestframerwork
 #从http://127.0.0.1:8000/store/api/morelist/?type_id=1接口拿数据
 #serializer数据在Store应用中
-
 
 @LoginValid
 def orders(request):
@@ -153,10 +199,28 @@ def count_orders(request):
 
     return render_to_response("store/count_orders.html",locals())
 
+#店铺管理
 @LoginValid
 def store(request):
+    username=request.COOKIES.get("name")
 
-    return render_to_response("store/store.html",locals())
+    if request.method=='POST':
+        user_storeinfo = QUser.objects.filter(username=username).first().store
+        print(request.POST)
+        s_name=request.POST.get('s_name')
+        s_address=request.POST.get('s_address')
+        s_description=request.POST.get('s_description')
+        s_logo=request.FILES.get('s_logo')
+
+        user_storeinfo.s_name=s_name
+        user_storeinfo.s_address=s_address
+        user_storeinfo.s_description=s_description
+        user_storeinfo.s_logo=s_logo
+        user_storeinfo.save()
+    if username:
+        user_store_info = QUser.objects.filter(username=username).first().store
+
+    return render(request,"store/store.html",locals())
 
 
 
