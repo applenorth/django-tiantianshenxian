@@ -72,6 +72,8 @@
                 </div>
             </div>
         </div>
+        {% verbatim %}
+        <div id="content">
         <div class="col-xs-12 col-sm-10">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -82,24 +84,23 @@
                     </ul>
                 </div>
 
-                {% verbatim %}
-                <div class="panel-body" id="content">
 
-                    <div v-for="one in goods_list">
-                        <div class="col-xs-12 col-sm-3">
-                            <a href="detail.html" class="thumbnail">
-                                <img src="/static/buyer/images/goods/goods001.jpg" class="img-responsive">
+                <div class="panel-body">
+
+
+                        <div class="col-xs-12 col-sm-3" v-for="one in goods_list" >
+                            <a href="/buyer/detail" class="thumbnail" >
+                                <img v-bind:src="'/static/'+one.g_picture" style="height: 114px">
 
                             </a>
-                            <p class="text-center">{{one.g_name}}</p>
+                            <p class="text-center">{{ one.g_name }}</p>
 
-                            <p class="text-center myps"><span>￥{{one.g_price}}</span><span>3.90/500g</span><span><img
-                                    src="/static/buyer/images/carts.png"/></span></p>
+                            <p class="text-center myps"><span>￥{{ one.g_price }}</span>
+                                <span><img src="/static/buyer/images/carts.png"/></span></p>
                         </div>
-                    </div>
 
                 </div>
-                {% endverbatim %}
+
             </div>
             <div class="col-xs-12 col-sm-8 col-sm-offset-4">
                 <ul class="pagination col-xs-12 col-sm-8 col-sm-offset-2">
@@ -121,6 +122,8 @@
                 </ul>
             </div>
         </div>
+        </div>
+         {% endverbatim %}
     </div>
 
 </div>
@@ -140,12 +143,12 @@
 
             created:function () {
                 //初始化执行，请求数据
-                var url = "http://127.0.0.1:8000/jsontest/";
+                var url = "http://127.0.0.1:8000/store/api/select_all_list";
                 this.$http.get(url).then( // 请求之后执行then
                     function(data) {
-                        console.log(data.data.data);
+                        console.log(data.data.results);
                         // 赋值，绑定动态数据
-                        this.goods_list = data.data.data;
+                        this.goods_list = data.data.results;
                     },
                     function(error){
                         console.log(error)

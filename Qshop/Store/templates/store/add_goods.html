@@ -35,7 +35,7 @@
                         <td>
                             <a href="#">{{ one.g_name }}</a>
                         </td>
-                        <td>{{ one.g_type }}</td>
+                        <td>{{ one.g_type | filter }}</td>
                         <td>{{ one.g_price }}</td>
                         <td>{{ one.g_num }}</td>
                     </tr>
@@ -201,6 +201,21 @@
             }
         }
     );
+    //vue自定义过滤器，对goods_type进行过滤
+    Vue.filter('filter', function (value) {
+        if(value==1){
+            return "Arknights"
+        }else if(value==2){
+            return "Genshin Impact"
+        }else if(value==3){
+            return "Azur Lane"
+        }else if(value==4){
+            return "Girls Frontline"
+        }else if(value==5){
+            return "Honkai Impact 3"
+        }
+
+    })
 
 </script>
 {% endblock %}

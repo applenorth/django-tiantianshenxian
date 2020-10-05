@@ -34,6 +34,8 @@ class Store(models.Model):
     s_description = models.TextField(verbose_name="商铺描述")
     s_user = models.OneToOneField(to=QUser, on_delete=models.CASCADE)
 
+    s_changed_datetime=models.DateTimeField(verbose_name="店铺名修改时间",auto_now=False)
+
     class Meta:
         db_table = "store"
 
@@ -57,7 +59,7 @@ class Goods(models.Model):
     g_public_date=models.DateField(verbose_name="生产日期",auto_now=True)
 
     g_description = models.TextField(verbose_name="描述")
-    g_picutre = models.ImageField(upload_to="goods_images", verbose_name='商品图片')
+    g_picture = models.ImageField(upload_to="goods_images", verbose_name='商品图片')
     g_num = models.IntegerField(verbose_name="商品库存")
     g_type = models.ForeignKey(to=GoodsType, on_delete=models.CASCADE)
     # 店铺关系

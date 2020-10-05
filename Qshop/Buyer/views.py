@@ -1,12 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import *
+from Store.models import *
 #json与ajax测试，返回一个json格式的用户信息
 from django.http import JsonResponse
 # Create your views here.
 
 #首页
 def index(request):
+
+    goods_list_bh3=Goods.objects.filter(g_type_id=5).all()[:5]   #goods为崩坏系列
+
+    goods_list_sq=Goods.objects.filter(g_type_id=4)  #goods为少前系列
+
+    goods_list_ark=Goods.objects.filter(g_type_id=1)    #明日方舟
+
+    goods_list_gi=Goods.objects.filter(g_type_id=2).all()[:5]    #原神
+
+
+    goods_list_azur=Goods.objects.filter(g_type_id=3)   #碧蓝航线
+
+    goods_list_pcr=Goods.objects.filter(g_type_id=6)    #公主连结
+
+
 
     return render(request,'buyer/index.html',locals())
 
@@ -57,3 +72,8 @@ def usercenterinfo(request):
 def list(request):
 
     return render(request,'buyer/list.html',locals())
+
+#detail界面
+def detail(request):
+
+    return render(request,'buyer/detail.html',locals())

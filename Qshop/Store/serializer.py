@@ -106,3 +106,53 @@ class MoreListView(viewsets.ReadOnlyModelViewSet):  #viewsets.ReadOnlyModelViewS
             "view": self
         }
 
+
+#为前台购物界面显示所有数据提供接口
+#返回所有商品
+class SelectAllListView(viewsets.ReadOnlyModelViewSet):  #viewsets.ReadOnlyModelViewSet
+    def get_queryset(self):
+        #拿到登录用户的所有商品信息
+
+        goods_list=Goods.objects.all()
+
+        # goods_list = GoodsType.objects.filter(id=quser_id).first().goods_set.all()
+        # 抛出goods_list
+        return goods_list
+
+        # 序列化器
+
+    serializer_class = MoreListSeriaLizer
+
+    # 返回数据，让结果保持原有的样子
+    def get_serializer_context(self):
+        return {
+            "view": self
+        }
+
+
+
+# ##拿到商品统计echarts的数据
+# class EchartsView(viewsets.ReadOnlyModelViewSet):  #viewsets.ReadOnlyModelViewSet
+#     def get_queryset(self):
+#         #拿到登录用户的所有商品信息
+#         quser_id = self.request.GET.get("quser_id")
+#
+#         quser_store = QUser.objects.filter(id=quser_id).first().store
+#         store_id = quser_store.id
+#         #通过店铺查询店铺中所有的商品
+#         goods_list=Goods.objects.filter(g_store_id=store_id).all()
+#
+#         # goods_list = GoodsType.objects.filter(id=quser_id).first().goods_set.all()
+#
+#         # 抛出goods_list
+#         return goods_list
+#
+#         # 序列化器
+#
+#     serializer_class = MoreListSeriaLizer
+#
+#     # 返回数据，让结果保持原有的样子
+#     def get_serializer_context(self):
+#         return {
+#             "view": self
+#         }

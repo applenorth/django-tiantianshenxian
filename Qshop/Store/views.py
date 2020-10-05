@@ -10,6 +10,8 @@ from django.views import View
 
 #导入重定向
 from django.http import HttpResponseRedirect
+#导入时间模块
+import datetime
 
 #密码加密
 import hashlib
@@ -164,7 +166,7 @@ def add_goods(request):
         goods.g_price=g_price
 
         #图片添加
-        goods.g_picutre=g_picture
+        goods.g_picture=g_picture
 
         #g_number字段必填，设置为自增
         goods.g_number=1
@@ -194,6 +196,17 @@ def count_goods(request):
 
     return render_to_response("store/count_goods.html",locals())
 
+
+#编写首页echarts的api接口
+def echarts_api():
+    result={
+       "data":[]
+    }
+    goods_list=Goods.objects.all()
+
+
+    return result
+
 @LoginValid
 def count_orders(request):
 
@@ -206,19 +219,51 @@ def store(request):
 
     if request.method=='POST':
         user_storeinfo = QUser.objects.filter(username=username).first().store
-        print(request.POST)
+        # print(request.POST)
         s_name=request.POST.get('s_name')
         s_address=request.POST.get('s_address')
         s_description=request.POST.get('s_description')
         s_logo=request.FILES.get('s_logo')
 
-        user_storeinfo.s_name=s_name
+
         user_storeinfo.s_address=s_address
         user_storeinfo.s_description=s_description
-        user_storeinfo.s_logo=s_logo
+        if s_logo:  #判断是否上传了图片
+            user_storeinfo.s_logo=s_logo
+
+        #进行店铺名修改时间校验
+        data_now = datetime.datetime.now()
+        # data=data.timestamp()
+        # print(data_now)
+        #判断是否存在datetime类型的数据
+        #存在，进行时间差判断
+        if user_storeinfo.s_changed_datetime:
+            data_old=user_storeinfo.s_changed_datetime  #获取数据库的更新名称时间
+            time_diff=data_now-data_old   #当前时间与数据库时间的时间差
+            int_secondes_time_diff=int(time_diff.total_seconds())
+
+            #30天---2592000秒
+            # print(int_secondes_time_diff)
+            #时间差超过30天的秒数，进行店铺名更新和时间值更新
+            if int_secondes_time_diff>2592000:
+                #修改店铺名并更新时间
+                user_storeinfo.s_name = s_name
+                user_storeinfo.s_changed_datetime=data_now
+
+        #不存在datetime表示第一次修改，直接修改名称并且写入时间
+        else:
+            #修改店铺名并更新时间值
+            user_storeinfo.s_name = s_name
+            user_storeinfo.s_changed_datetime = data_now
+
         user_storeinfo.save()
+
     if username:
         user_store_info = QUser.objects.filter(username=username).first().store
+
+        #拿到店铺名称写入时间的时间戳
+        change_datetime=int(user_store_info.s_changed_datetime.timestamp())
+        # print(change_datetime)
 
     return render(request,"store/store.html",locals())
 
@@ -265,6 +310,7 @@ def userinfo(request):
 
     return render(request,"store/userinfo.html",locals())
 
+#后台用户头像
 class UserinfoView(View):
     def get(self,request):
         result={

@@ -37,10 +37,11 @@
                                 </td>
                                 <th class="t_label">店铺名称</th>
                                 <td class="t_input">
-                                    <input class="form-control" type="text" placeholder="店铺名称"
+                                    <input class="form-control" type="text" placeholder="店铺名称" readonly id="readonly1"
                                            name="s_name" value="{{ user_store_info.s_name }}">
+                                    <div id="countdown"></div>
                                 </td>
-                                <td class="t_message">店铺名称每月至多修改一次</td>
+                                <td class="t_message">店铺名称最多每30天修改一次</td>
 
                             </tr>
                             <tr>
@@ -72,8 +73,60 @@
                 </div>
             </div>
         </div>
+        <div style="display: none" id="change_time">{{change_datetime}}</div>
 {% endblock %}
 
 {% block js %}
     <script src="/static/store/js/echarts.min.js"></script>
+
+    <script>
+    var str='';
+   // var sec=11000;   //30天有2592000s
+    var data=new Date();
+    var write_data=$("#change_time").text();  //带小数
+    i=setInterval(function(){
+
+        //if(sec>=0){
+        //sec=sec-1;
+        data=new Date();
+        datetime=data.getTime()/1000;  //当前时间的时间戳，单位s
+
+        date_diff=datetime-write_data;  //时间差，单位s
+
+        if(date_diff>2592000){
+            str='你现在可以修改店铺名了！';
+            $("#readonly1").removeAttr("readonly");  //移除只读属性
+            clearInterval(i);
+        }
+
+        //}
+
+       // if(sec<=0){
+            //str='你现在可以修改店铺名了！';
+            //$("#readonly1").removeAttr("readonly");  //移除只读属性
+            //clearInterval(i);
+
+        //}
+        else{
+
+            // 设置day
+            var day=Math.floor(date_diff/60/60/24);
+            // 设置hour
+            var hour=Math.floor(date_diff/60/60%24);
+            // 设置min
+            var min=Math.floor(date_diff/60%60);
+            // 设置s
+            var s=Math.floor(date_diff%60);
+
+            str='距离上次更新：'+day+'天'+hour+'小时'+min+'分钟'+s+'秒';
+  
+        }
+        //显示剩下的时间
+        document.getElementById('countdown').innerHTML=str;
+    },1000);
+
+
+
+</script>
+
 {% endblock %}

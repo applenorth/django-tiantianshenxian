@@ -26,5 +26,6 @@ urlpatterns = [
     path('place_order/', place_order),
     path('usercenterinfo/', usercenterinfo),
     path('list/', list),
+    path('detail/', detail),
 
 ]

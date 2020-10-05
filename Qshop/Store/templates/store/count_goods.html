@@ -158,4 +158,47 @@
         };
         lineChart.setOption(line_option);
   </script>
+
+  <script>
+    new Vue(     //3.创建vue对象
+        {
+            el:"#content", //绑定元素对象
+            data:{
+                goods_list:[
+
+                ],
+
+            },
+
+            created:function () {
+                //初始化执行，请求数据
+                var url = "http://127.0.0.1:8000/store/api/morelist/?quser_id={{request.COOKIES.user_id}}";
+                //调用getdata方法
+                this.getdata(url)
+
+            },
+            methods:{
+                getdata:function(url){
+                    this.$http.get(url).then( // 请求之后执行then
+                    function(data) {
+                        console.log(data.data.results);
+
+                        // 赋值，绑定动态数据
+                        this.goods_list = data.data.results;
+                        //绑定上一页与下一页的数据
+
+                    },
+                    function(error){
+                        console.log(error)
+                    }
+                )
+
+                },
+
+            }
+        }
+    );
+
+</script>
+
 {% endblock %}

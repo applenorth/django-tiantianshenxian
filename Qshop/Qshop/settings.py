@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Buyer',
     'Store',
-    'rest_framework'
+    'rest_framework',
 ]
 
 #中间件的配置

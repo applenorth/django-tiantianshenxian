@@ -1,51 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>天天生鲜——首页</title>
-    <script src="js/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/detail.css">
-    <link rel="stylesheet" href="css/search.css">
-    <script src="js/bootstrap.js"></script>
+{% extends "buyer/base.html" %}
 
-</head>
-<body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid container">
-        <!-- Brand and to-only">Toggle navigation</span>
-            <span class="icon-bggle get grouped for better mobile display -->
-        <div class="navbar-header ">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">欢迎来到天天生鲜</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="bootstrap_login.html">登录</a></li>
-                <li><a href="bootstrap_register.html">注册</a></li>
-                <li><a href="user-center-info.html">用户中心</a></li>
-                <li><a href="bootstrap_cart.html">我的购物车</a></li>
-                <li><a href="myorders.html">我的订单</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+{% block title %}
+    零-详细信息
+{% endblock %}
 
-<div class="container">
+{% block script %}
+    <link rel="stylesheet" href="/static/buyer/css/detail.css">
+    <link rel="stylesheet" href="/static/buyer/css/search.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
 
     <!--2.搜索框开始-->
     <div class="search col-sm-12">
         <div class="row">
             <!--左边图片和文字-->
             <div class="col-lg-5">
-                <img src="./images/logo.png" alt="..." class="img-rounded">
+                <img src="/static/buyer/images/logo.png" alt="..." class="img-rounded">
                 <span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;商品详情</span>
             </div>
             <!--右边表单-->
@@ -82,7 +54,7 @@
     </article>
     <section class="container">
         <div class="col-xs-12 col-sm-5">
-            <img src="images/goods_detail.jpg"/>
+            <img src="/static/buyer/images/goods_detail.jpg"/>
         </div>
         <div class="col-xs-12 col-sm-7">
             <h2 class="title">大兴大棚草霉</h2>
@@ -116,14 +88,14 @@
                 <div class="panel-body">
                     <div class="col-xs-12 col-sm-12">
                         <a href="#" class="thumbnail">
-                            <img src="images/goods/goods001.jpg" class="img-responsive">
+                            <img src="/static/buyer/images/goods/goods001.jpg" class="img-responsive">
                             <p class="text-center">进口柠檬</p>
                             <p class="text-center">￥3.90</p>
                         </a>
                     </div>
                     <div class="col-xs-12 col-sm-12">
                         <a href="#" class="thumbnail">
-                            <img src="images/goods/goods002.jpg" class="img-responsive">
+                            <img src="/static/buyer/images/goods/goods002.jpg" class="img-responsive">
                             <p class="text-center">玫瑰香葡萄</p>
                             <p class="text-center">￥16.80</p>
                         </a>
@@ -153,23 +125,10 @@
     </section>
 
 </div>
+{% endblock %}
 
-<div class="footer">
-    <div class="foot_link">
-        <a href="#">关于我们</a>
-        <span>|</span>
-        <a href="#">联系我们</a>
-        <span>|</span>
-        <a href="#">招聘人才</a>
-        <span>|</span>
-        <a href="#">友情链接</a>
-    </div>
-    <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
-    <p>电话：010-****888 京ICP备*******8号</p>
-</div>
-
-
-<script>
+{% block js %}
+    <script>
     $(function () {
         $("#btn_add").click(function () {
             var value = $(this).next().val();
@@ -207,5 +166,4 @@
         });
     })
 </script>
-</body>
-</html>
+{% endblock %}
