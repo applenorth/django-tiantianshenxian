@@ -1,5 +1,7 @@
 {% extends "buyer/base.html" %}
 
+{% load filters %}
+
 {% block title %}
     零-详细信息
 {% endblock %}
@@ -50,18 +52,18 @@
         </div>
     </menu>
     <article class="container">
-        <p class="col-xs-12">全部分类 > 新鲜水果 > 商品详情</p>
+        <p class="col-xs-12">全部分类 > {{ goods_detail.g_type_id | goods_type_name}} > 商品详情</p>
     </article>
     <section class="container">
         <div class="col-xs-12 col-sm-5">
-            <img src="/static/buyer/images/goods_detail.jpg"/>
+            <img src="/static/{{goods_detail.g_picture}}" style="height: 350px;width: 350px"/>
         </div>
         <div class="col-xs-12 col-sm-7">
-            <h2 class="title">大兴大棚草霉</h2>
+            <h2 class="title">{{goods_detail.g_name}}</h2>
             <p>草莓浆果柔软多汁，味美爽口，适合速冻保鲜贮藏。草莓速冻后，可以保持原有的色、香、味，既便于贮藏，又便于外销。</p>
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <h1 id="price_detail">¥16.80<span class="span1">500g</span></h1>
+                    <h1 id="price_detail">¥{{goods_detail.g_price}}<span class="span1">500g</span></h1>
                 </div>
             </div>
             <div class="col-xs-2">
@@ -69,14 +71,16 @@
             </div>
             <div class="input-group col-xs-3">
                 <span class="input-group-addon" id="btn_add">+</span>
-                <input type="text" class="form-control newwidth" value="1">
+                <input type="text" class="form-control newwidth" id="goods_count" value="1">
                 <span class="input-group-addon" id="btn_sub">-</span>
             </div>
             <div class="col-xs-12">
-                <p>总价:<span class="newprice" id="newprice">16.80元</span></p>
+                <p>总价:<span class="newprice" id="newprice">{{goods_detail.g_price}}元</span></p>
             </div>
-            <p class="col-xs-3"><a class="btn btn-danger btn-lg" href="#" role="button">立即购买</a></p>
-            <p class="col-xs-3"><a class="btn btn-danger btn-lg" href="bootstrap_cart.html" role="button">加入购物车</a></p>
+            <p class="col-xs-3"><a class="btn btn-danger btn-lg"
+                role="button" onclick="buy_now({{goods_detail.id}})">立即购买</a></p>
+            <p class="col-xs-3"><a class="btn btn-danger btn-lg"
+                role="button" onclick="add_car({{goods_detail.id}})">加入购物车</a></p>
         </div>
     </section>
     <section class="container newspace">
@@ -86,20 +90,16 @@
                     <h3 class="panel-title text-center newheight">新品推荐</h3>
                 </div>
                 <div class="panel-body">
+                    {% for one in goods_new %}
                     <div class="col-xs-12 col-sm-12">
-                        <a href="#" class="thumbnail">
-                            <img src="/static/buyer/images/goods/goods001.jpg" class="img-responsive">
-                            <p class="text-center">进口柠檬</p>
-                            <p class="text-center">￥3.90</p>
+                        <a href="/buyer/detail/{{ one.id }}" class="thumbnail">
+                            <img src="/static/{{one.g_picture}}" class="img-responsive">
+                            <p class="text-center">{{one.g_name}}</p>
+                            <p class="text-center">￥{{one.g_price}}</p>
                         </a>
                     </div>
-                    <div class="col-xs-12 col-sm-12">
-                        <a href="#" class="thumbnail">
-                            <img src="/static/buyer/images/goods/goods002.jpg" class="img-responsive">
-                            <p class="text-center">玫瑰香葡萄</p>
-                            <p class="text-center">￥16.80</p>
-                        </a>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
@@ -115,8 +115,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <h3>商品详情</h3>
-                    <p>草莓采摘园位于北京大兴区 庞各庄镇四各庄村
-                        ，每年1月-6月面向北京以及周围城市提供新鲜草莓采摘和精品礼盒装草莓，草莓品种多样丰富，个大香甜。所有草莓均严格按照有机标准培育，不使用任何化肥和农药。草莓在采摘期间免洗可以直接食用。欢迎喜欢草莓的市民前来采摘，也欢迎各大单位选购精品有机草莓礼盒，有机草莓礼盒是亲朋馈赠、福利送礼的最佳选择。</p>
+                    <p>{{goods_detail.g_description}}</p>
                 </div>
                 <div class="tab-pane" id="profile">...</div>
             </div>
@@ -136,7 +135,7 @@
             value += 1;
             $(this).next().val(value);
             /*取价格的html文本单位*/
-            var htmls = $("#price_detail").html()
+            var htmls = $("#price_detail").html();
             /*用span进行切分,取出价格，转换成float型*/
             prices = htmls.split("span");
             price = prices[0];
@@ -164,6 +163,23 @@
             /*求总价修改总价栏*/
             $("#newprice").text(total.toFixed(2) + "元")
         });
-    })
+
+    });
+
+    function buy_now(id){
+        /* goods_count获取商品数量*/
+        var goods_count=$("#goods_count").val();
+        console.log(goods_count);
+        console.log(id);
+        url="/buyer/place_order/?id="+id+"&count="+goods_count;
+        /*浏览器中重新打开一个地址*/
+        window.location.href=url
+
+    }
+    function add_car(id){
+        var goods_count=$("#goods_count").val();
+        url="/buyer/cart/?id="+id+"&count="+goods_count;
+        window.location.href=url
+    }
 </script>
 {% endblock %}

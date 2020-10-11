@@ -26,6 +26,15 @@ def goods_type_name(num):
         return "Girls Frontline"
     elif num==5:
         return "Honkai Impact 3"
+    elif num == 6:
+        return "Princess Connect! Re:Dive"
     else:
         return '没有找到'
+
+
+@register.filter
+def pay_price(num):
+    #实付款
+    money=num+10
+    return money
 

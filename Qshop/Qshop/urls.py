@@ -14,15 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
-from Store.views import *
-from Buyer.views import *
+from django.urls import path,include,re_path
+from Buyer.views import index
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('buyer/',include("Buyer.urls")),
     path('store/',include("Store.urls")),
+    re_path("^$",index)     #配置到首页的路由，^$不匹配任何东西
 
 
 

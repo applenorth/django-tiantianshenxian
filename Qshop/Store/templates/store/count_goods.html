@@ -1,5 +1,7 @@
 {% extends "store/base.html" %}
 
+{% load filters %}
+
 {% block title %}<title>天天生鲜</title>{% endblock %}
 
 {% block style %}
@@ -24,7 +26,7 @@
               </div>
               <div class="card-body">
                 <div class="chart-bar">
-                      <canvas width="1500px" height="350px" id="myBarChart"></canvas>
+                      <canvas  width="1250px" height="350px" id="myBarChart"></canvas>
                 </div>
               </div>
           </div>
@@ -63,30 +65,111 @@
 {% endblock %}
 
 {% block js %}
+
     <script src="/static/store/js/echarts.min.js"></script>
+
   <script>
       var myChart = echarts.init(document.getElementById('myBarChart'));
       var option = {
-            title: {
-                text: "商品库存量"
+            color: ['#3398DB'],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+
             },
-            tooltip: {},
             legend: {
                 data:['库存量']
             },
-            xAxis: {
-                data: ["土豆","西红柿","黄瓜","茄子","卷心菜","大白菜","辣椒"]
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
             },
-            yAxis: {},
-            series: [{
-                name: '库存量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20,30]
-            }]
+            xAxis: [
+                {
+                    type: 'category',
+                    data: [],
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+
+                    axisLabel: {
+                        formatter: function (val) {
+                            var strs = val.split('');  //转化为字符串数组
+                            var str = '';
+                                for (var i = 0, s;s = strs[i++]; ) {
+                                    str += s;
+                                    if (!(i % 14))     //14个字符换行
+                                        str += '\n';
+                                }
+                            return str
+
+                        }
+                    }
+                }
+            ],
+
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '库存量',
+                    type: 'bar',
+                    barWidth: '60%',
+                    data: [],
+                    itemStyle: {
+                        normal: {
+                           label: {
+                               show: true,		//开启显示
+                               position: 'top',	//在上方显示
+                               textStyle: {	    //数值样式
+                                   color: 'black',
+                                   fontSize: 12
+                               }
+                           }
+                        }
+                    }
+
+                }
+            ]
         };
-        myChart.setOption(option);
+
+         // myChart.setOption(option);
+         //ajax绑定数据
+         $.ajax({
+             url: "http://127.0.0.1:8000/store/goodsview",
+             data: "",
+             type: "get",
+             success: function (data) { //请求成功
+                 console.log(data.data);  //打印返回值
+                 // 获取数据  绑定数据
+                 var x = option.xAxis[0].data = [];
+                 var y = option.series[0].data = [];
+                 for (var one in data.data) {
+                     console.log(one);
+                     x.push(data.data[one].type);
+                     y.push(data.data[one].num);
+                 }
 
 
+                 //option.series[0].data = data.data; // 数组
+                 myChart.setOption(option); //重新加载
+
+             },
+             error: function (error) { //请求失败
+                 //失败的信息
+                 console.log(error)
+
+             }
+         });
+
+        // 周销售占比
         var numberChart = echarts.init(document.getElementById('goods_number'));
 
         numberoption = {
@@ -133,7 +216,7 @@
             ]
         };
 
-
+        // 当月收益趋势
         numberChart.setOption(numberoption);
 
 
@@ -159,46 +242,6 @@
         lineChart.setOption(line_option);
   </script>
 
-  <script>
-    new Vue(     //3.创建vue对象
-        {
-            el:"#content", //绑定元素对象
-            data:{
-                goods_list:[
 
-                ],
-
-            },
-
-            created:function () {
-                //初始化执行，请求数据
-                var url = "http://127.0.0.1:8000/store/api/morelist/?quser_id={{request.COOKIES.user_id}}";
-                //调用getdata方法
-                this.getdata(url)
-
-            },
-            methods:{
-                getdata:function(url){
-                    this.$http.get(url).then( // 请求之后执行then
-                    function(data) {
-                        console.log(data.data.results);
-
-                        // 赋值，绑定动态数据
-                        this.goods_list = data.data.results;
-                        //绑定上一页与下一页的数据
-
-                    },
-                    function(error){
-                        console.log(error)
-                    }
-                )
-
-                },
-
-            }
-        }
-    );
-
-</script>
 
 {% endblock %}

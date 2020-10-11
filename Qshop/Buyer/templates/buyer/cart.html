@@ -111,7 +111,7 @@
                     <span class="center-block">共计<span class="text-danger total_count">2</span>件商品</span>
                 </td>
                 <td>
-                    <a href="place_order.html" class="btn btn-danger">去结算</a>
+                    <a href="/buyer/place_order" class="btn btn-danger">去结算</a>
                 </td>
             </tr>
             </tfoot>
@@ -128,8 +128,8 @@
     function update_page_info() {
         // 获取所有被选中的商品的checkbox
         // 获取所有被选中的商品所在的ul元素
-        total_count = 0
-        total_price = 0
+        total_count = 0;
+        total_price = 0;
         $("tbody").find(":checked").parents("tr").each(function () {
             // 获取商品的数目和小计
             count = $(this).children("td").eq(4).find("input").val()

@@ -78,4 +78,4 @@ class GoodsImg(models.Model):
         db_table = "goodsimg"
 
 
-#ORM操作训练
+

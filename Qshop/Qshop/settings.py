@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Buyer',
     'Store',
     'rest_framework',
+    'captcha',
 ]
 
 #中间件的配置
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'Qshop.MyMiddleWare.MyMiddWareTest'   #注册自定义中间件
 ]
 
 ROOT_URLCONF = 'Qshop.urls'
@@ -137,9 +139,19 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"static")
 SESSION_COOKIE_AGE = 259200             # Session的cookie失效日期（3天）（数字为秒数）（默认）
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # 是否关闭浏览器使得Session过期（默认）
 
-## def 提供的分页
-REST_FRAMEWORK = {
-'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination', # 分页器
-'PAGE_SIZE': 12, # 每页返回的条数
+# 全局设置
+# def 提供的分页，
+# REST_FRAMEWORK = {
+# 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination', # 分页器
+# 'PAGE_SIZE': 12, # 每页返回的条数
+#
+# }
 
+#缓存配置
+# The cache backends to use.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION':'127.0.0.1:11211'    #连接本地服务的memchace端口
+    }
 }

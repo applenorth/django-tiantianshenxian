@@ -31,7 +31,8 @@
                     <a href="/buyer/register">立刻注册</a>
                 </div>
             </div>
-            <form class="mt_30" action="./index.html">
+            <form class="mt_30" action="" method="post">
+                {% csrf_token %}
                 <div class="form-group">
                     <input type="text" class="form-control input-lg" id="user_name" name="user_name"
                            placeholder="用户名">

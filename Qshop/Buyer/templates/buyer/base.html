@@ -40,11 +40,17 @@
         <!-- 所有的登陆注销项导航栏类目 -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/buyer/login">登录</a></li>
-                <li><a href="/buyer/register">注册</a></li>
+                {% if request.COOKIES.b_name %}
+                    <li><a href="#">{{request.COOKIES.b_name}}</a></li>
+                    <li><a href="/buyer/logout">退出</a></li>
+                {% else %}
+                    <li><a href="/buyer/login">登录</a></li>
+                    <li><a href="/buyer/register">注册</a></li>
+                {% endif %}
                 <li><a href="/buyer/usercenterinfo">用户中心</a></li>
                 <li><a href="/buyer/cart">我的购物车</a></li>
                 <li><a href="/buyer/myorders">我的订单</a></li>
+
             </ul>
         </div>
     </div>

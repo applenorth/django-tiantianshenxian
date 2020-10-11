@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,HttpResponse
 from .forms import RegisterUser
 from .forms import PersonForm
 from django.shortcuts import render
@@ -7,6 +7,8 @@ from .models import *
 from django.http import JsonResponse
 #CBV class base views  基于类的视图，类视图
 from django.views import View
+#导入聚合模块
+from django.db.models import Sum, Avg, Count, Min, Max
 
 #导入重定向
 from django.http import HttpResponseRedirect
@@ -28,9 +30,13 @@ def LoginValid(func):
         session_name=request.session.get('name')
         #如果cookie和session存在
         if cooki_username and session_name:
-            #查询判断是否匹配登录角色
+
+            #针对中文账号登陆问题
+            # cooki_username=cooki_username.encode('ISO-8859-1').decode('utf-8')
+            #查询判断是否匹配登录角色，判断用户名，用户类型
             flag=QUser.objects.filter(
-                username=cooki_username
+                username=cooki_username,
+                usertype=1
             ).exists()
             if flag:
                 return func(request,*args,**kwargs)
@@ -38,17 +44,21 @@ def LoginValid(func):
         return HttpResponseRedirect('/store/login')
     return inner
 
+#登录界面
 from .forms import UserLogin
 def login(request):
     if request.method=='POST':
         # print(request.POST)
         username = request.POST.get("username")
         password = request.POST.get("password")
+        print(username)
         # 校验数据
         # if username and password:
         userlogin=UserLogin(request.POST)
         if userlogin.is_valid():  #通过校验
-            flag = QUser.objects.filter(username=username, password=SetPassword(password)).exists()
+            #判断用户名，密码，账号，用户类型是否符合
+            flag = QUser.objects.filter(
+                username=username, password=SetPassword(password),usertype=1).exists()
             user_id=QUser.objects.filter(username=username).first().id
             if flag:
                 # 存在
@@ -56,6 +66,7 @@ def login(request):
                 response = HttpResponseRedirect("/store/index")  # 校验成功重定向到index界面
                 # cookie与session设置要依赖于响应对象
                 # 设置cookie
+                # username=bytes(username,'utf-8').decode('ISO-8859-1')  #解决中文账号名登陆问题
                 response.set_cookie("name",username,expires=259200)
                 response.set_cookie("user_id",user_id,expires=259200)
 
@@ -97,10 +108,14 @@ def register(request):
         email=request.POST.get("email")
         password=request.POST.get("password")
         repassword=request.POST.get("repassword")
+        #判断验证码是否一致
+        write_captcha=request.POST.get("captcha")
+        captcha=request.session['code']
 
         #进行账号判断
         # 校验密码是否一致
-        if username and password and repassword and password == repassword:
+        if username and password and repassword and password == repassword\
+                and captcha==write_captcha:
             # 后端校验账号是否存在
             registeruser=RegisterUser(request.POST)  #实例化对象
 
@@ -110,7 +125,8 @@ def register(request):
                 QUser.objects.create(
                     username=username,
                     email=email,
-                    password=SetPassword(password)  #对注册的密码进行hash加密
+                    password=SetPassword(password),  #对注册的密码进行hash加密
+                    usertype=1
                 )
                 # 重定向
                 return HttpResponseRedirect("/store/login/")
@@ -123,9 +139,12 @@ def register(request):
             message = "请输入密码，密码不能为空"
         elif password != repassword:
             message= "两次输入的密码不一致"
+        elif captcha != write_captcha:
+            message= "验证码输入不正确"
 
     return render(request,"store/register.html",locals())
 
+#首页
 @LoginValid
 def index(request):
 
@@ -135,6 +154,11 @@ def index(request):
 @LoginValid
 #添加商品页面
 def add_goods(request):
+    """
+    商品添加页面，进行post请求提交添加商品的信息
+    :param request:请求页面 store/add_goods.html
+    :return:判定可提交之后重定向到当前页面
+    """
     goodstype_list=GoodsType.objects.all()
     if request.method=="POST":
         print(request.POST)
@@ -324,3 +348,49 @@ class UserinfoView(View):
 
         #抛出result
         return JsonResponse(result)
+
+
+#类视图获取后台商品数量统计echarts的数据
+class GoodsView(View):
+    def __init__(self):
+        self.result = {
+            "code": "200",
+            "msg": "success",
+            "data": [],
+            "methods": "get"
+        }
+    # 处理 get 请求，获取不同类型商品的总量
+    def get(self,request):
+        self.result["methods"] = "get"
+        user_id = request.COOKIES.get("user_id")
+
+        # 处理有id，拿到店铺id
+        store_id = Store.objects.filter(s_user_id=user_id).first().id
+        # 拿到店铺内对应的商品
+        # goods_list=Goods.objects.filter(g_store_id=store_id).all()
+        goods_list=Goods.objects.filter(g_store_id=store_id).values("g_type_id").annotate(Sum("g_num"))
+
+        for one in goods_list:
+            goodstype=GoodsType.objects.filter(id=one['g_type_id']).first()
+            self.result["data"].append(
+                {"type":goodstype.t_name,"num":one['g_num__sum']}
+            )
+
+
+        return JsonResponse(self.result)
+
+
+#验证码视图
+from Store.polls.util import *
+from Store.polls.captcha import *
+
+def captcha(request):
+
+    code_text = gen_verify_code() # 随机生成4位数字
+    request.session['code'] = code_text # 在服务器中以session形式保存
+    image_data = Captcha.instance().generate(code_text)
+
+    # print(image_data)
+    # print(request.session['code'])
+    # print(code_text)
+    return HttpResponse(image_data, content_type='image/png') # 返回图片对象

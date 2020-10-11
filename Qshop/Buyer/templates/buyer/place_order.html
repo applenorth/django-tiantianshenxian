@@ -1,5 +1,7 @@
 {% extends "buyer/base.html" %}
 
+{% load filters%}
+
 {% block script %}
      <link rel="stylesheet" href="/static/buyer/css/search.css">
 {% endblock %}
@@ -47,7 +49,7 @@
             <div class="panel-body">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="optionsRadios" value="option1" checked>
+                        <input type="radio" name="optionsRadios" value="option1" >
                         <img src="/static/buyer/images/pay/yhk.png" alt="..." class="img-thumbnail">
                     </label>
                     <label>
@@ -55,7 +57,7 @@
                         <img src="/static/buyer/images/pay/wx.png" alt="..." class="img-thumbnail">
                     </label>
                     <label>
-                        <input type="radio" name="optionsRadios" value="option1">
+                        <input type="radio" name="optionsRadios" value="option1" checked>
                         <img src="/static/buyer/images/pay/zfb.png" alt="..." class="img-thumbnail">
                     </label>
                     <label>
@@ -82,28 +84,20 @@
                         <td>数量</td>
                         <td>小计</td>
                     </tr>
+                    {% for order_info in porder.orderinfo_set.all %}
                     <tr align="center" valign="center">
-                        <td>1</td>
+                        <td>{{ forloop.counter }}</td>
                         <td>
-                            <img class="img-thumbnail" src="/static/buyer/images/goods02.jpg" width="60px" alt="">
+                            <img class="img-thumbnail" src="/static/{{orderinfo.goods_picture}}" width="60px" alt="">
                         </td>
-                        <td>嘎啦苹果嘎啦苹果</td>
+                        <td>{{ order_info.goods_name }}</td>
                         <td>500g</td>
-                        <td>11.80元</td>
-                        <td>1</td>
-                        <td>11.80</td>
+                        <td>{{ order_info.goods_price }}元</td>
+                        <td>{{ orderinfo.goods_num }}</td>
+                        <td>{{ orderinfo.goods_total }}</td>
                     </tr>
-                    <tr align="center" valign="center">
-                        <td>2</td>
-                        <td>
-                            <img class="img-thumbnail" src="/static/buyer/images/goods/goods001.jpg" width="60px" alt="">
-                        </td>
-                        <td>大兴大棚草莓</td>
-                        <td>500g</td>
-                        <td>12.80元</td>
-                        <td>1</td>
-                        <td>11.80</td>
-                    </tr>
+                    {% endfor %}
+
                 </table>
             </div>
         </div>
@@ -120,12 +114,12 @@
                         <td>实付款</td>
                     </tr>
                     <tr align="center" valign="center">
-                        <td>2</td>
+                        <td>{{porder.type_number}}</td>
                         <td>
-                            30.6
+                            {{porder.total_price}}
                         </td>
                         <td>10</td>
-                        <td>46</td>
+                        <td>{{porder.total_price | pay_price}}</td>
                     </tr>
 
                 </table>

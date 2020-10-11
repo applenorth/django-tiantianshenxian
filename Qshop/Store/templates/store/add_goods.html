@@ -56,8 +56,8 @@
                         <a class="page-link" aria-label="Previous" v-on:click="getprev()">上一页</a>
                     </li>
 
-                    <li class="page-item" v-on:click="getpage()">
-                        <a class="page-link">1</a>
+                    <li class="page-item" v-on:click="getpage()" v-for="one in count">
+                        <a class="page-link" href="http://127.0.0.1:8000/store/paginationview/?quser_id=1&page=1">{{one}}</a>
                     </li>
 
                     <li class="page-item" aria-label="Next" v-on:click="getnext()">
@@ -142,12 +142,13 @@
                 prev_url:"",      //上一页url
                 page_url_list:[   //页码列表
 
-                ]
+                ],
+                count:"",
             },
 
             created:function () {
                 //初始化执行，请求数据
-                var url = "http://127.0.0.1:8000/store/api/morelist/?quser_id={{request.COOKIES.user_id}}";
+                var url = "http://127.0.0.1:8000/store/paginationview/?quser_id={{request.COOKIES.user_id}}";
                 //调用getdata方法
                 this.getdata(url)
 
@@ -156,14 +157,16 @@
                 getdata:function(url){
                     this.$http.get(url).then( // 请求之后执行then
                     function(data) {
-                        console.log(data.data.results);
-                        console.log(data.data.next);
-                        console.log(data.data.previous);
+                        //console.log(data.data.results);
+                        //console.log(data.data.next);
+                        //console.log(data.data.previous);
                         // 赋值，绑定动态数据
                         this.goods_list = data.data.results;
                         //绑定上一页与下一页的数据
                         this.next_url=data.data.next;    //下一页
                         this.prev_url=data.data.previous;  //上一页
+
+                        this.count=Math.ceil(data.data.count/12);  //数据总量
 
                     },
                     function(error){
@@ -192,12 +195,8 @@
                          this.getdata(this.next_url)
                      }
                 },
-                //获取页码页面
-                getpage:function () {
 
-                    this.getdata(this.next_url)
 
-                }
             }
         }
     );
@@ -213,6 +212,8 @@
             return "Girls Frontline"
         }else if(value==5){
             return "Honkai Impact 3"
+        }else if(value==6){
+            return "Princess Connect! Re:Dive"
         }
 
     })

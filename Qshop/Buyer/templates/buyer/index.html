@@ -82,8 +82,8 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-3">
-            <img src="/static/buyer/images/adv01.list-group-itemjpg" class="mypic"/>
-            <img src="/static/buyer/images/adv02.jpg" class="mypic"/>
+            <img src="/static/buyer/images/adv01.jpg" class="mypic"/>
+            <img src="/static/buyer/images/bg1.png" class="mypic"/>
         </div>
     </div>
 </menu>
@@ -95,13 +95,13 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-sm-2">
-                <img src="/static/buyer/images/banner01.jpg" class="img-responsive">
+                <img src="/static/buyer/images/bh3_bck.png" class="img-responsive" style="height: 232px">
             </div>
             {% for one in goods_list_bh3 %}
                 <div class="col-xs-12 col-sm-2">
-                    <a href="detail.html" class="thumbnail">
+                    <a href="/buyer/detail/{{ one.id }}" class="thumbnail">
                         <p class="text-center">{{one.g_name}}</p><br/>
-                        <img src="/static/buyer/images/goods/goods018.jpg" class="img-responsive" >
+                        <img src="/static/{{one.g_picture}}" class="img-responsive" style="height: 145px;width: 145px">
                         <p class="text-center">¥{{one.g_price}}元</p>
                     </a>
                 </div>
@@ -117,43 +117,19 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-sm-2">
-                <img src="/static/buyer/images/banner02.jpg" class="img-responsive">
+                <img src="/static/buyer/images/sq_bg.png" class="img-responsive" style="height: 232px">
             </div>
+
+            {% for one in goods_list_sq %}
             <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">青岛野生海捕大青虾</p><br/>
-                    <img src="/static/buyer/images/goods/goods018.jpg" class="img-responsive">
-                    <p class="text-center">¥48.00元</p>
+                <a href="/buyer/detail/{{ one.id }}" class="thumbnail">
+                    <p class="text-center">{{one.g_name}}</p><br/>
+                    <img src="/static/{{ one.g_picture }}" class="img-responsive" style="height: 145px;width: 145px">
+                    <p class="text-center">¥{{one.g_price}}元</p>
                 </a>
             </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">扇贝</p><br/>
-                    <img src="/static/buyer/images/goods/goods019.jpg" class="img-responsive">
-                    <p class="text-center">¥46.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">冷冻秋刀鱼</p><br/>
-                    <img src="/static/buyer/images/goods/goods020.jpg">
-                    <p class="text-center">¥19.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">基围虾</p><br/>
-                    <img src="/static/buyer/images/goods/goods021.jpg">
-                    <p class="text-center">¥25.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">洞庭湖帝王蟹</p><br/>
-                    <img src="/static/buyer/images/goods/goods022.jpg">
-                    <p class="text-center">¥52.80元</p>
-                </a>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </section>
@@ -164,43 +140,18 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-sm-2">
-                <img src="/static/buyer/images/banner03.jpg" class="img-responsive">
+                <img src="/static/buyer/images/azur_bg.png" class="img-responsive" style="height: 232px">
             </div>
+            {% for one in goods_list_azur %}
             <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">猪脚</p><br/>
-                    <img src="/static/buyer/images/goods/goods023.jpg" class="img-responsive">
-                    <p class="text-center">¥37.00元</p>
+                <a href="/buyer/detail/{{ one.id }}" class="thumbnail">
+                    <p class="text-center">{{one.g_name}}</p><br/>
+                    <img src="/static/{{one.g_picture}}" class="img-responsive" style="height: 145px;width: 145px">
+                    <p class="text-center">¥{{one.g_price}}元</p>
                 </a>
             </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">鸡肉</p><br/>
-                    <img src="/static/buyer/images/goods/goods024.jpg" class="img-responsive">
-                    <p class="text-center">¥25.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">猪肉</p><br/>
-                    <img src="/static/buyer/images/goods/goods025.jpg">
-                    <p class="text-center">¥37.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">牛肉</p><br/>
-                    <img src="/static/buyer/images/goods/goods026.jpg">
-                    <p class="text-center">¥52.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">新西兰羔羊肉</p><br/>
-                    <img src="/static/buyer/images/goods/goods027.jpg">
-                    <p class="text-center">¥79.00元</p>
-                </a>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </section>
@@ -215,7 +166,7 @@
             </div>
             {% for one in goods_list_gi %}
                 <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
+                <a href="/buyer/detail/{{ one.id }}" class="thumbnail">
                     <p class="text-center">{{one.g_name}}</p><br/>
                     <img src="/static/{{one.g_picture}}" class="img-responsive" style="height: 145px;width: 145px">
                     <p class="text-center">¥{{one.g_price}}元</p>
@@ -233,43 +184,19 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-sm-2">
-                <img src="/static/buyer/images/banner05.jpg" class="img-responsive">
+                <img src="/static/buyer/images/ark_bg.png" class="img-responsive" style="height: 232px">
             </div>
+
+            {% for one in goods_list_ark %}
             <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">黄瓜</p><br/>
-                    <img src="/static/buyer/images/goods/goods033.jpg" class="img-responsive">
-                    <p class="text-center">¥6.00元</p>
+                <a href="/buyer/detail/{{ one.id }}" class="thumbnail">
+                    <p class="text-center">{{one.g_name}}</p><br/>
+                    <img src="/static/{{one.g_picture}}" class="img-responsive" style="height: 145px;width: 145px">
+                    <p class="text-center">¥{{one.g_price}}元</p>
                 </a>
             </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">西红柿</p><br/>
-                    <img src="/static/buyer/images/goods/goods034.jpg" class="img-responsive">
-                    <p class="text-center">¥5.50元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">茄子</p><br/>
-                    <img src="/static/buyer/images/goods/goods035.jpg">
-                    <p class="text-center">¥8.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">扁豆</p><br/>
-                    <img src="/static/buyer/images/goods/goods036.jpg">
-                    <p class="text-center">¥15.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">蒜台</p><br/>
-                    <img src="/static/buyer/images/goods/goods037.jpg">
-                    <p class="text-center">¥25.00元</p>
-                </a>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </section>
@@ -280,43 +207,19 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-12 col-sm-2">
-                <img src="/static/buyer/images/banner06.jpg" class="img-responsive">
+                <img src="/static/buyer/images/pcr_bg.png" class="img-responsive" style="height: 232px">
             </div>
+
+            {% for one in goods_list_pcr %}
             <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">冰激凌</p><br/>
-                    <img src="/static/buyer/images/goods/goods038.jpg" class="img-responsive">
-                    <p class="text-center">¥8.00元</p>
+                <a href="/buyer/detail/{{ one.id }}" class="thumbnail">
+                    <p class="text-center">{{one.g_name}}</p><br/>
+                    <img src="/static/{{one.g_picture}}" class="img-responsive" style="height: 145px;width: 145px">
+                    <p class="text-center">¥{{one.g_price}}元</p>
                 </a>
             </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">雪糕</p><br/>
-                    <img src="/static/buyer/images/goods/goods039.jpg" class="img-responsive">
-                    <p class="text-center">¥2.50元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">速冻水饺</p><br/>
-                    <img src="/static/buyer/images/goods/goods040.jpg">
-                    <p class="text-center">¥13.50元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">速冻汤圆</p><br/>
-                    <img src="/static/buyer/images/goods/goods041.jpg">
-                    <p class="text-center">15.00元</p>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-2">
-                <a href="#" class="thumbnail">
-                    <p class="text-center">老冰棍</p><br/>
-                    <img src="/static/buyer/images/goods/goods042.jpg">
-                    <p class="text-center">¥0.50元</p>
-                </a>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </section>

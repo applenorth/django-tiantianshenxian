@@ -21,22 +21,26 @@ router.register("select_all_list",SelectAllListView,basename="")
 # )
 
 urlpatterns = [
-    path('index/', index),
-    path('add_goods/', add_goods),
-    path('orders/', orders),
-    path('count_goods/', count_goods),
-    path('count_orders/', count_orders),
-    path('store/', store),
-    path('login/', login),
-    path('register/', register),
-    path('logout/', logout),
-    path('userinfo/', userinfo),
-    path('userinfoview/', UserinfoView.as_view()),
+    path('index/', index),                                      #后台管理：首页
+    path('add_goods/', add_goods),                              #后台管理：添加商品
+    path('orders/', orders),                                    #后台管理：订单确认
+    path('count_goods/', count_goods),                          #后台管理：商品统计界面
+    path('count_orders/', count_orders),                        #后台管理：订单统计界面
+    path('store/', store),                                      #后台管理：店铺管理
+    path('login/', login),                                      #后台管理：登录界面
+    path('register/', register),                                #后台管理：注册界面
+    path('logout/', logout),                                    #后台管理：登出路由
+    path('userinfo/', userinfo),                                #后台管理：店铺用户信息
+    path('userinfoview/', UserinfoView.as_view()),              #后台管理：个人信息api接口
+    path('goodsview/', GoodsView.as_view()),                    #后台管理：商品信息接口
 
     # path('add_goods/', add_goods),
 
     # path("morelist/",MoreListView.as_view())  #ApiView类路由
     path("api/", include(router.urls)),
     # path("morelist/", more_list),
+
+    path("captcha/", captcha),                                   #后台管理：验证码路由
+    path("paginationview/", PaginationView.as_view()),           #分页的goods_list路由
 
 ]

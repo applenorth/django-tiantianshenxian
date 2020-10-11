@@ -23,7 +23,8 @@
                         class="glyphicon glyphicon-chevron-right"></span><a href="/buyer/login">用户登录</a></div>
                 <div class="col-lg-6  pull-right text-center height_60">立刻注册</div>
             </div>
-            <form class="mt_30" action="./index.html">
+            <form class="mt_30" action="" method="post">
+                {% csrf_token %}
                 <div class="form-group">
                     <input type="text" class="form-control input-lg" id="user_name" name="user_name"
                            placeholder="用户名">
