@@ -1,0 +1,45 @@
+.makepos {
+            padding-top: 20px;
+        }
+
+        .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+        }
+
+        .myps span {
+            margin-left: 3px;
+        }
+
+        .breadcrumb {
+            background-color: white;
+        }
+
+        hr {
+            border-width: 2px;
+            border-color: green;
+        }
+
+        .newheight {
+            height: 34px;
+            line-height: 34px;
+        }
+
+        .span1 {
+            font-size: 16px;
+            color: black;
+            margin-left: 200px;
+        }
+
+        .newprice {
+            font-size: 22px;
+            color: red;
+        }
+
+        .title {
+            margin-top: 0px;
+        }
+
+        .newspace {
+            margin-top: 30px;
+        }

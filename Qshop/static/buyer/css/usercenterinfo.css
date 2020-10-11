@@ -1,0 +1,7 @@
+#address {
+    display: block;
+}
+
+#allorders, #userinfo {
+    display: none;
+}
